@@ -1,15 +1,18 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { SharedModule } from "@app/modules";
+import {
+  ButtonComponent,
+  HeaderComponent,
+  SearchBarComponent,
+  SearchFilterComponent,
+  SearchResultComponent,
+  SearchResultItemComponent,
+  SorterComponent,
+} from "@app/components";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { HeaderComponent } from "./components/header/header.component";
-import { SearchBarComponent } from "./components/search-bar/search-bar.component";
-import { SearchFilterComponent } from "./components/search-filter/search-filter.component";
-import { SorterComponent } from "./components/sorter/sorter.component";
-import { SearchResultComponent } from "./components/search-result/search-result.component";
-import { SearchResultItemComponent } from "./components/search-result-item/search-result-item.component";
-import { ButtonComponent } from "./components/button/button.component";
 
 @NgModule({
   declarations: [
@@ -22,7 +25,12 @@ import { ButtonComponent } from "./components/button/button.component";
     SearchResultItemComponent,
     ButtonComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SharedModule,
+    BrowserAnimationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
