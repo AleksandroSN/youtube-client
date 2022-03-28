@@ -5,6 +5,7 @@ import { SharedModule } from "@app/modules";
 import {
   ButtonComponent,
   HeaderComponent,
+  ProfileComponent,
   SearchBarComponent,
   SearchFilterComponent,
   SearchResultComponent,
@@ -24,6 +25,7 @@ import { AppComponent } from "./app.component";
     SearchResultComponent,
     SearchResultItemComponent,
     ButtonComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

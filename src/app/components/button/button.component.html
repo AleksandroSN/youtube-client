@@ -1,1 +1,8 @@
-<button type="button">{{text}}</button>
+<button mat-raised-button color="primary" type="button">
+  <ng-container *ngIf="btnText ; else children">
+    {{btnText}}
+  </ng-container>
+  <ng-template #children>
+    <ng-content></ng-content>
+  </ng-template>
+</button>

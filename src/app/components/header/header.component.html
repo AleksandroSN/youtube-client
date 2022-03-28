@@ -1,5 +1,16 @@
-<header color="primary">
-  <mat-toolbar>
-    <span>My Application</span>
+<header>
+  <mat-toolbar class="pt-1">
+    <div class="flex align-center px-1">
+      <div class="flex align-center justify-center gap-5 flex-1">
+        <a href="#" class="logo">
+          <img src="/assets/logo.png" alt="logo">
+        </a>
+        <app-search-bar></app-search-bar>
+      </div>
+      <app-profile></app-profile>
+    </div>
+    <mat-toolbar-row>
+      <app-sorter></app-sorter>
+    </mat-toolbar-row>
   </mat-toolbar>
 </header>
