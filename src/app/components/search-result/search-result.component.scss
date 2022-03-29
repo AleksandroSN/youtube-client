@@ -1,0 +1,9 @@
+:host {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  max-width: 90%;
+  margin: 1rem auto;
+  padding: 0.5rem;
+}

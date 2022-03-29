@@ -1,1 +1,11 @@
-<p>search-result-item works!</p>
+<div class="container">
+  <div>
+    <img src="{{card.snippet.thumbnails.medium.url}}" alt="image">
+  </div>
+  <p>Title : {{card.snippet.title}}</p>
+  <p>Views count : {{card.statistics.viewCount}}</p>
+  <p>Likes count : {{card.statistics.likeCount}}</p>
+  <p>Dislikes count : {{card.statistics.dislikeCount}}</p>
+  <p>Comments count : {{card.statistics.commentCount}}</p>
+  <app-button btnText="more..."></app-button>
+</div>

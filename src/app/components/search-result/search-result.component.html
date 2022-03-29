@@ -1,2 +1,3 @@
-{{cards.etag}}
-<app-search-result-item></app-search-result-item>
+<div *ngFor="let item of cards.items">
+  <app-search-result-item [card]="item"></app-search-result-item>
+</div>
