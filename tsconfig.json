@@ -21,7 +21,7 @@
     "lib": ["es2020", "dom"],
     "paths": {
       "@app/*": ["src/app/*"],
-      "@shared/*": ["src/*"]
+      "@*": ["src/*"]
     }
   },
   "angularCompilerOptions": {

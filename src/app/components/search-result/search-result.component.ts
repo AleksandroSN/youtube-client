@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { CardsService } from "@app/services";
+import { ResponseModel } from "@shared";
 
 @Component({
   selector: "app-search-result",
@@ -6,9 +8,17 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./search-result.component.scss"],
 })
 export class SearchResultComponent implements OnInit {
-  items: string[] = [];
+  cards!: ResponseModel;
+
+  constructor(private cardsService: CardsService) {}
 
   ngOnInit(): void {
-    this.items.push("AAA");
+    this.getCards();
+  }
+
+  getCards() {
+    this.cardsService.getResponse().subscribe((cards) => {
+      this.cards = cards;
+    });
   }
 }
