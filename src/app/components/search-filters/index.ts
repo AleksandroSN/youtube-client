@@ -1,1 +1,1 @@
-export * from "./sorter.component";
+export * from "./search-filters.component";

@@ -2,7 +2,10 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
+import { FormsModule } from "@angular/forms";
 import { SharedModule } from "@app/modules";
+import { SortDirective } from "@app/directives";
+import { FilterPipe } from "@app/pipes";
 import {
   ButtonComponent,
   HeaderComponent,
@@ -27,6 +30,8 @@ import { AppComponent } from "./app.component";
     SearchResultItemComponent,
     ButtonComponent,
     ProfileComponent,
+    SortDirective,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +39,7 @@ import { AppComponent } from "./app.component";
     SharedModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
