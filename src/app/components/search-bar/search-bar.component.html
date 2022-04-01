@@ -1,6 +1,8 @@
-<mat-form-field appearance="fill" class="width-100">
-  <mat-label>Search</mat-label>
-  <input matInput type="search" placeholder="Search...">
-</mat-form-field>
-<app-button btnText="search"></app-button>
+<form class="search-bar__form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill" class="width-100">
+    <mat-label>Search</mat-label>
+    <input matInput type="search" placeholder="Search...">
+  </mat-form-field>
+  <app-button btnText="search" btnType="submit"></app-button>
+</form>
 <app-search-filter></app-search-filter>

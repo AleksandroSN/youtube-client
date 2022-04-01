@@ -22,7 +22,7 @@ export class CardsService {
   constructor(private httpService: HttpServiceService) {
     this.subscribeToSort();
     this.subscribeToInput();
-    this.test();
+    // this.test();
   }
 
   getResponse() {
