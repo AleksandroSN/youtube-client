@@ -1,6 +1,21 @@
 :host {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex: 1;
   gap: 10px;
+}
+
+.filter__title {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: hsl(0, 0%, 57%);
+}
+
+.filter__btn {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: hsl(214, 84%, 56%);
 }

@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
+html {
+  overflow-x: hidden;
+  margin-right: calc(-1 * (100vw - 100%));
+}
+
 html,
 body {
   height: 100%;
@@ -70,6 +75,10 @@ body {
 
 .pt-3 {
   padding-top: 3rem;
+}
+
+.pb-2 {
+  padding-bottom: 2rem;
 }
 
 .pb-4 {

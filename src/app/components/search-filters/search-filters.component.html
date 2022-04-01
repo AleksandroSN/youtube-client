@@ -1,9 +1,7 @@
-<!-- <div> -->
-Sorting by :
-<p appSort="{{sortByDateParam}}">date</p>
-<p appSort="{{sortByViewCountParam}}">count views</p>
-<label for="byWord">
+<span class="filter__title">Sorting by :</span>
+<span class="filter__btn" appSort="{{sortByDateParam}}">date</span>
+<span class="filter__btn" appSort="{{sortByViewCountParam}}">count views</span>
+<label class="filter__btn" for="byWord">
   by word or sentace
   <input [(ngModel)]="searchData" (input)="onChangeInput()" type="text" name="byWord" id="byWord">
 </label>
-<!-- </div> -->

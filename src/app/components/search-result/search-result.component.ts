@@ -1,4 +1,6 @@
-import { Component, DoCheck, OnDestroy, OnInit } from "@angular/core";
+import {
+  Component, DoCheck, OnDestroy, OnInit,
+} from "@angular/core";
 import { CardsService } from "@app/services";
 import { ResponseModel } from "@shared";
 
@@ -21,7 +23,6 @@ export class SearchResultComponent implements OnInit, DoCheck, OnDestroy {
   }
 
   ngDoCheck(): void {
-    // console.log(this.cardsService.data, "ngDoCheck");
     this.cards = this.cardsService.data;
   }
 
@@ -29,10 +30,4 @@ export class SearchResultComponent implements OnInit, DoCheck, OnDestroy {
     this.cardsService.destroy$.next(true);
     this.cardsService.destroy$.complete();
   }
-
-  // getCards() {
-  //   this.cardsService.getResponse().subscribe((cards) => {
-  //     this.cards = cards;
-  //   });
-  // }
 }
