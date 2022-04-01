@@ -8,8 +8,4 @@ import { ResponseItemModel } from "@shared";
 })
 export class SearchResultItemComponent {
   @Input() card!: ResponseItemModel;
-
-  // ngOnInit(): void {
-  //   this.item = "ITEM";
-  // }
 }

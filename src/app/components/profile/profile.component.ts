@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, HostBinding } from "@angular/core";
 
 @Component({
   selector: "app-profile",
   templateUrl: "./profile.component.html",
   styleUrls: ["./profile.component.scss"],
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
   profileName = "AleksandroSN";
 
-  ngOnInit(): void {}
+  @HostBinding("class") class = "flex-25";
 }

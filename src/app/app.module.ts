@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { SharedModule } from "@app/modules";
-import { SortDirective } from "@app/directives";
+import { SortDirective, ProgressBarColorDirective } from "@app/directives";
 import { FilterPipe } from "@app/pipes";
 import {
   ButtonComponent,
@@ -31,6 +31,7 @@ import { AppComponent } from "./app.component";
     ButtonComponent,
     ProfileComponent,
     SortDirective,
+    ProgressBarColorDirective,
     FilterPipe,
   ],
   imports: [

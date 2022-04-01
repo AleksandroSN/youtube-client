@@ -1,12 +1,27 @@
-<div class="container">
-  <div>
-    <img src="{{card.snippet.thumbnails.medium.url}}" alt="image">
-  </div>
-  <p>Title : {{card.snippet.title}}</p>
-  <p>Views count : {{card.statistics.viewCount}}</p>
-  <p>Likes count : {{card.statistics.likeCount}}</p>
-  <p>Dislikes count : {{card.statistics.dislikeCount}}</p>
-  <p>Comments count : {{card.statistics.commentCount}}</p>
-  <p>Published at : {{card.snippet.publishedAt | date}}</p>
-  <app-button btnText="more..."></app-button>
-</div>
+<mat-card class="container">
+  <mat-card-title-group>
+    <img class="px-1" mat-card-image src="{{card.snippet.thumbnails.medium.url}}" alt="video thumbnail">
+  </mat-card-title-group>
+  <mat-card-actions class="flex justify-evenly">
+    <div class="flex align-center gap-2">
+      <mat-icon>visibility</mat-icon><span>{{card.statistics.viewCount}}</span>
+    </div>
+    <div class="flex align-center gap-2">
+      <mat-icon>thumb_up</mat-icon><span>{{card.statistics.likeCount}}</span>
+    </div>
+    <div class="flex align-center gap-2">
+      <mat-icon>thumb_down</mat-icon><span>{{card.statistics.dislikeCount}}</span>
+    </div>
+    <div class="flex align-center gap-2">
+      <mat-icon>question_answer</mat-icon><span>{{card.statistics.commentCount}}</span>
+    </div>
+  </mat-card-actions>
+  <mat-card-content class="text-center">
+    <mat-card-title class="pb-4">{{card.snippet.title}}</mat-card-title>
+    <app-button class="card-btn" btnText="more..."></app-button>
+  </mat-card-content>
+  <mat-card-footer>
+    <mat-progress-bar appProgressBarColor [date]="card.snippet.publishedAt | date" mode="determinate" value="100">
+    </mat-progress-bar>
+  </mat-card-footer>
+</mat-card>

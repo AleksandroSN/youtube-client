@@ -21,7 +21,7 @@ export class CardsService {
 
   constructor(private httpService: HttpServiceService) {
     this.subscribeToSort();
-    this.subscribeToInput();
+    // this.subscribeToInput();
     // this.test();
   }
 
@@ -61,13 +61,13 @@ export class CardsService {
     }
   }
 
-  subscribeToInput() {
-    this.searchStr$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((data) => console.log(data));
-  }
+  // subscribeToInput() {
+  //   this.searchStr$
+  //     .pipe(takeUntil(this.destroy$))
+  //     .subscribe();
+  // }
 
-  test() {
+  getCards() {
     this.getResponse()
       .pipe()
       .subscribe((d) => {

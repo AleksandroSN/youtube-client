@@ -24,9 +24,24 @@ body {
 .justify-center {
   justify-content: center;
 }
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
+.gap-2 {
+  gap: 0.2rem;
+}
 
 .gap-5 {
   gap: 0.5rem;
+}
+
+.gap-10rem {
+  gap: 10rem;
 }
 
 .flex-50 {
@@ -35,6 +50,10 @@ body {
 
 .flex-33 {
   flex: 0 1 33%;
+}
+
+.flex-25 {
+  flex: 0 1 25%;
 }
 
 .flex-10 {
@@ -53,10 +72,41 @@ body {
   padding-top: 3rem;
 }
 
+.pb-4 {
+  padding-bottom: 4rem;
+}
+
 .px-1 {
   padding: 0 1rem;
 }
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.text-center {
+  text-align: center;
+}
+
+// override angular material styles
+.green-progress .mat-progress-bar-fill::after {
+  background-color: hsl(120, 100%, 25%);
+}
+
+.blue-progress .mat-progress-bar-fill::after {
+  background-color: hsl(240, 100%, 50%);
+}
+
+.red-progress .mat-progress-bar-fill::after {
+  background-color: hsl(0, 100%, 50%);
+}
+
+.yellow-progress .mat-progress-bar-fill::after {
+  background-color: hsl(60, 100%, 50%);
+}
+
+.flex {
+  &.mat-card-actions {
+    display: flex;
+  }
 }

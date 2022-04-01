@@ -7,13 +7,11 @@ import { CardsService } from "@app/services";
   styleUrls: ["./search-bar.component.scss"],
 })
 export class SearchBarComponent {
-  @HostBinding("class") class =
-    "flex align-center justify-center flex-33 gap-5";
+  @HostBinding("class") class = "flex align-center justify-center flex-50 gap-5";
 
   constructor(private cardsServise: CardsService) {}
 
   onSubmit() {
-    this.cardsServise.test();
-    console.log("SUBMIT");
+    this.cardsServise.getCards();
   }
 }
