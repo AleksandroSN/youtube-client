@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { FiltersService } from "@app/services";
 
 @Component({
   selector: "app-header",
@@ -6,9 +7,17 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent implements OnInit {
-  profileName = "";
+  showFilters = false;
+
+  constructor(private filtersService: FiltersService) {}
 
   ngOnInit(): void {
-    this.profileName = "My Github";
+    this.showFilter();
+  }
+
+  showFilter() {
+    this.filtersService.statusFilters$.subscribe((status) => {
+      this.showFilters = status;
+    });
   }
 }

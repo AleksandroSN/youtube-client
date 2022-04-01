@@ -1,6 +1,5 @@
 import { Component, OnDestroy } from "@angular/core";
 import { CardsService } from "@app/services";
-// import { SortDirection } from "@shared";
 
 @Component({
   selector: "app-search-filters",
