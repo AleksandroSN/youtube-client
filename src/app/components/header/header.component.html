@@ -1,0 +1,16 @@
+<header>
+  <mat-toolbar class="pt-3 pb-2">
+    <mat-toolbar-row class="gap-10rem">
+      <div class="flex align-center justify-end gap-5 flex-1">
+        <a href="#" class="logo">
+          <img src="/assets/logo.png" alt="logo">
+        </a>
+        <app-search-bar></app-search-bar>
+      </div>
+      <app-profile></app-profile>
+    </mat-toolbar-row>
+    <mat-toolbar-row *ngIf="showFilters">
+      <app-search-filters></app-search-filters>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</header>
