@@ -11,7 +11,7 @@ export interface SnippetThumbnailsModel {
   default: ThumbnailModel;
   medium: ThumbnailModel;
   high: ThumbnailModel;
-  standart: ThumbnailModel;
+  standard: ThumbnailModel;
   maxres: ThumbnailModel;
   channelTitle: string;
 }

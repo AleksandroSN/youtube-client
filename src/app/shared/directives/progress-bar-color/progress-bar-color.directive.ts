@@ -1,12 +1,16 @@
 import {
-  Directive, Input, ElementRef, Renderer2, OnInit,
+  Directive,
+  Input,
+  ElementRef,
+  Renderer2,
+  AfterViewInit,
 } from "@angular/core";
 import { getNumberOfDays } from "@utils";
 
 @Directive({
   selector: "[appProgressBarColor]",
 })
-export class ProgressBarColorDirective implements OnInit {
+export class ProgressBarColorDirective implements AfterViewInit {
   @Input() date: string | null = "";
 
   constructor(
@@ -14,7 +18,7 @@ export class ProgressBarColorDirective implements OnInit {
     private rerender: Renderer2,
   ) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.updateColor();
   }
 

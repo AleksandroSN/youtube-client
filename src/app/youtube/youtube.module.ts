@@ -1,6 +1,10 @@
 import { NgModule } from "@angular/core";
 import { SharedModule } from "@app/shared";
-import { SearchResultComponent, SearchResultItemComponent } from "./components";
+import {
+  SearchResultComponent,
+  SearchResultItemComponent,
+  DetailItemComponent,
+} from "./components";
 import { SearchResultPageComponent, DetailPageComponent } from "./pages";
 
 @NgModule({
@@ -9,6 +13,7 @@ import { SearchResultPageComponent, DetailPageComponent } from "./pages";
     SearchResultItemComponent,
     SearchResultPageComponent,
     DetailPageComponent,
+    DetailItemComponent,
   ],
   imports: [SharedModule],
   exports: [SearchResultPageComponent, DetailPageComponent],

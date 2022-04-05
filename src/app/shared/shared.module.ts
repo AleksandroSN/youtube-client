@@ -7,7 +7,8 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatToolbarModule } from "@angular/material/toolbar";
-import { ButtonComponent } from "./components";
+import { RouterModule } from "@angular/router";
+import { ButtonComponent, RouteLinkComponent } from "./components";
 import { ProgressBarColorDirective, SortDirective } from "./directives";
 import { FilterPipe } from "./pipes";
 
@@ -27,12 +28,15 @@ const MaterialsModules = [
     FilterPipe,
     ProgressBarColorDirective,
     SortDirective,
+    RouteLinkComponent,
   ],
-  imports: [MaterialsModules, CommonModule],
+  imports: [MaterialsModules, CommonModule, RouterModule],
   exports: [
     MaterialsModules,
     CommonModule,
+    RouterModule,
     ButtonComponent,
+    RouteLinkComponent,
     FilterPipe,
     ProgressBarColorDirective,
     SortDirective,

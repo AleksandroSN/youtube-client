@@ -1,6 +1,10 @@
 import { Injectable } from "@angular/core";
-import { ResponseModel, SortParamsWithDirection } from "@app/shared";
-import { BehaviorSubject, Subject, takeUntil } from "rxjs";
+import {
+  ResponseItemModel,
+  ResponseModel,
+  SortParamsWithDirection,
+} from "@app/shared";
+import { BehaviorSubject, Observable, Subject, takeUntil } from "rxjs";
 import { FiltersService } from "../filters-service";
 import { HttpServiceService } from "../http-service";
 
@@ -14,31 +18,40 @@ export class CardsService {
 
   data?: ResponseModel;
 
+  detailData?: ResponseItemModel;
+
   constructor(
     private httpService: HttpServiceService,
-    private filtersService: FiltersService,
+    private filtersService: FiltersService
   ) {
     this.subscribeToSort();
   }
 
-  getResponse() {
+  getResponse(): Observable<ResponseModel> {
     return this.httpService.get<ResponseModel>();
   }
 
-  subscribeToSort() {
+  subscribeToSort(): void {
     this.sortBy$.pipe(takeUntil(this.destroy$)).subscribe((data) => {
       this.filtersService.sort(
         data as SortParamsWithDirection,
-        this.data as ResponseModel,
+        this.data as ResponseModel
       );
     });
   }
 
-  getCards() {
+  getCards(): void {
     this.getResponse()
       .pipe()
       .subscribe((d) => {
         this.data = d;
       });
+  }
+
+  getCard(id: string): void {
+    this.getResponse().subscribe((d) => {
+      const card = d.items.find((c) => c.id === id);
+      this.detailData = card;
+    });
   }
 }

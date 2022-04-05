@@ -18,7 +18,7 @@
   </mat-card-actions>
   <mat-card-content class="text-center">
     <mat-card-title class="pb-4">{{card.snippet.title}}</mat-card-title>
-    <app-button class="card-btn" btnText="more..."></app-button>
+    <app-route-link class="card-btn" linkText="More" linkPath="/home/{{card.id}}"></app-route-link>
   </mat-card-content>
   <mat-card-footer>
     <mat-progress-bar appProgressBarColor [date]="card.snippet.publishedAt | date" mode="determinate" value="100">
