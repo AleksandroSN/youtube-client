@@ -1,42 +1,41 @@
-import { Component, DoCheck, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 import { CardsService } from "@app/core/services";
 import { ResponseItemModel } from "@app/shared";
-import { takeUntil } from "rxjs";
+import { Subject, takeUntil } from "rxjs";
 
 @Component({
   selector: "app-detail-item",
   templateUrl: "./detail-item.component.html",
   styleUrls: ["./detail-item.component.scss"],
 })
-export class DetailItemComponent implements OnInit, OnDestroy, DoCheck {
+export class DetailItemComponent implements OnInit, OnDestroy {
   // bug border-bottom color prev card
   card?: ResponseItemModel;
 
-  cardId: string = "";
+  destroy$ = new Subject<boolean>();
 
   constructor(
     private cardsService: CardsService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
   ) {}
 
   ngOnInit(): void {
+    this.cardsService.detailData$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((c) => {
+        console.log(c);
+        this.card = c;
+      });
     this.getCard();
-  }
-
-  ngDoCheck(): void {
-    this.card = this.cardsService.detailData;
+    // console.log(this.card?.snippet.publishedAt);
   }
 
   getCard() {
-    this.route.params
-      .pipe(takeUntil(this.cardsService.destroy$))
-      .subscribe((param) => {
-        this.cardId = param["id"];
-      });
-    this.cardsService.getCard(this.cardId);
+    const itemId = this.route.snapshot.paramMap.get("id") as string;
+    this.cardsService.getCardById(itemId);
   }
 
   goBack(): void {
@@ -44,7 +43,7 @@ export class DetailItemComponent implements OnInit, OnDestroy, DoCheck {
   }
 
   ngOnDestroy(): void {
-    this.cardsService.destroy$.next(true);
-    this.cardsService.destroy$.complete();
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

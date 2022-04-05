@@ -3,14 +3,14 @@ import {
   Input,
   ElementRef,
   Renderer2,
-  AfterViewInit,
+  AfterContentInit,
 } from "@angular/core";
 import { getNumberOfDays } from "@utils";
 
 @Directive({
   selector: "[appProgressBarColor]",
 })
-export class ProgressBarColorDirective implements AfterViewInit {
+export class ProgressBarColorDirective implements AfterContentInit {
   @Input() date: string | null = "";
 
   constructor(
@@ -18,13 +18,14 @@ export class ProgressBarColorDirective implements AfterViewInit {
     private rerender: Renderer2,
   ) {}
 
-  ngAfterViewInit(): void {
+  ngAfterContentInit(): void {
+    console.log(this.date);
     this.updateColor();
   }
 
   updateColor(): void {
     const currentDate = new Date();
-    const difDay = getNumberOfDays(currentDate, this.date as string);
+    const difDay = getNumberOfDays(currentDate, this.date ?? "");
     if (difDay < 7) {
       this.rerender.addClass(this.el.nativeElement, "blue-progress");
       return;

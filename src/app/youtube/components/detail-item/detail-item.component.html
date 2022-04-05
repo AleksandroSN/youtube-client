@@ -28,7 +28,8 @@
     </div>
   </mat-card-actions>
   <mat-card-footer>
-    <mat-progress-bar appProgressBarColor [date]="card?.snippet?.publishedAt | date" mode="determinate" value="100">
+    <mat-progress-bar *ngIf="card?.snippet?.publishedAt" appProgressBarColor [date]="card?.snippet?.publishedAt | date"
+      mode="determinate" value="100">
     </mat-progress-bar>
   </mat-card-footer>
 </mat-card>

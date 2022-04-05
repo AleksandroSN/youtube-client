@@ -10,7 +10,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { RouterModule } from "@angular/router";
 import { ButtonComponent, RouteLinkComponent } from "./components";
 import { ProgressBarColorDirective, SortDirective } from "./directives";
-import { FilterPipe } from "./pipes";
+import { FilterPipe, SorterPipe } from "./pipes";
 
 const MaterialsModules = [
   MatToolbarModule,
@@ -26,6 +26,7 @@ const MaterialsModules = [
   declarations: [
     ButtonComponent,
     FilterPipe,
+    SorterPipe,
     ProgressBarColorDirective,
     SortDirective,
     RouteLinkComponent,
@@ -38,6 +39,7 @@ const MaterialsModules = [
     ButtonComponent,
     RouteLinkComponent,
     FilterPipe,
+    SorterPipe,
     ProgressBarColorDirective,
     SortDirective,
   ],

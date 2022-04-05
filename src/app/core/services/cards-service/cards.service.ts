@@ -1,57 +1,32 @@
 import { Injectable } from "@angular/core";
-import {
-  ResponseItemModel,
-  ResponseModel,
-  SortParamsWithDirection,
-} from "@app/shared";
-import { BehaviorSubject, Observable, Subject, takeUntil } from "rxjs";
-import { FiltersService } from "../filters-service";
+import { ResponseItemModel, ResponseModel } from "@app/shared";
+import { BehaviorSubject, Observable } from "rxjs";
 import { HttpServiceService } from "../http-service";
 
 @Injectable()
 export class CardsService {
-  sortBy$ = new BehaviorSubject<SortParamsWithDirection | string>("");
+  data$ = new BehaviorSubject<ResponseModel | undefined>(undefined);
 
-  searchStr$ = new BehaviorSubject<string>("");
+  detailData$ = new BehaviorSubject<ResponseItemModel | undefined>(undefined);
 
-  destroy$ = new Subject<boolean>();
-
-  data?: ResponseModel;
-
-  detailData?: ResponseItemModel;
-
-  constructor(
-    private httpService: HttpServiceService,
-    private filtersService: FiltersService
-  ) {
-    this.subscribeToSort();
-  }
+  constructor(private httpService: HttpServiceService) {}
 
   getResponse(): Observable<ResponseModel> {
     return this.httpService.get<ResponseModel>();
-  }
-
-  subscribeToSort(): void {
-    this.sortBy$.pipe(takeUntil(this.destroy$)).subscribe((data) => {
-      this.filtersService.sort(
-        data as SortParamsWithDirection,
-        this.data as ResponseModel
-      );
-    });
   }
 
   getCards(): void {
     this.getResponse()
       .pipe()
       .subscribe((d) => {
-        this.data = d;
+        this.data$.next(d);
       });
   }
 
-  getCard(id: string): void {
+  getCardById(id: string): void {
     this.getResponse().subscribe((d) => {
       const card = d.items.find((c) => c.id === id);
-      this.detailData = card;
+      this.detailData$.next(card);
     });
   }
 }

@@ -3,17 +3,16 @@ import {
   ElementRef,
   HostListener,
   Input,
-  OnDestroy,
   OnInit,
   Renderer2,
 } from "@angular/core";
-import { CardsService } from "@app/core/services";
+import { FiltersService } from "@app/core/services";
 import { SortDirection } from "@app/shared/models";
 
 @Directive({
   selector: "[appSort]",
 })
-export class SortDirective implements OnInit, OnDestroy {
+export class SortDirective implements OnInit {
   sortDirection: SortDirection = "DESC";
 
   sortParam: string = "";
@@ -23,7 +22,7 @@ export class SortDirective implements OnInit, OnDestroy {
   }
 
   constructor(
-    private cardService: CardsService,
+    private filtersService: FiltersService,
     private elementRef: ElementRef<HTMLElement>,
     private rerender: Renderer2,
   ) {}
@@ -32,7 +31,7 @@ export class SortDirective implements OnInit, OnDestroy {
   onSortData(): void {
     if (this.sortDirection === "ASC") {
       this.sortDirection = "DESC";
-      this.cardService.sortBy$.next({
+      this.filtersService.sortBy$.next({
         params: this.sortParam,
         direction: this.sortDirection,
       });
@@ -40,7 +39,7 @@ export class SortDirective implements OnInit, OnDestroy {
     }
     if (this.sortDirection === "DESC") {
       this.sortDirection = "ASC";
-      this.cardService.sortBy$.next({
+      this.filtersService.sortBy$.next({
         params: this.sortParam,
         direction: this.sortDirection,
       });
@@ -49,10 +48,5 @@ export class SortDirective implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.rerender.addClass(this.elementRef.nativeElement, "cursor-pointer");
-  }
-
-  ngOnDestroy(): void {
-    this.cardService.destroy$.next(true);
-    this.cardService.destroy$.complete();
   }
 }
