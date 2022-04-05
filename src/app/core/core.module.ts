@@ -14,6 +14,7 @@ import {
   FiltersService,
   HttpServiceService,
 } from "./services";
+import { NotFoundPageComponent } from "./pages";
 
 @NgModule({
   declarations: [
@@ -22,9 +23,10 @@ import {
     SearchBarComponent,
     SearchFilterComponent,
     SearchFilterBtnComponent,
+    NotFoundPageComponent,
   ],
   providers: [HttpServiceService, FiltersService, ErrorService, CardsService],
   imports: [SharedModule, FormsModule],
-  exports: [HeaderComponent],
+  exports: [HeaderComponent, NotFoundPageComponent],
 })
 export class CoreModule {}
