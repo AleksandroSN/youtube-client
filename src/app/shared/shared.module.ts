@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -31,11 +32,12 @@ const MaterialsModules = [
     SortDirective,
     RouteLinkComponent,
   ],
-  imports: [MaterialsModules, CommonModule, RouterModule],
+  imports: [MaterialsModules, CommonModule, RouterModule, ReactiveFormsModule],
   exports: [
     MaterialsModules,
     CommonModule,
     RouterModule,
+    ReactiveFormsModule,
     ButtonComponent,
     RouteLinkComponent,
     FilterPipe,

@@ -1,1 +1,10 @@
-<a routerLink="{{linkPath}}" mat-raised-button color="primary">{{linkText}}</a>
+<ng-container *ngIf="linkText ; else children">
+  <a routerLink="{{linkPath}}" mat-raised-button color="primary">
+    {{linkText}}
+  </a>
+</ng-container>
+<ng-template #children>
+  <a routerLink="{{linkPath}}">
+    <ng-content></ng-content>
+  </a>
+</ng-template>
