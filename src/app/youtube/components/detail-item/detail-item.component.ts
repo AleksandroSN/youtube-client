@@ -11,7 +11,6 @@ import { filter, Subject, takeUntil } from "rxjs";
   styleUrls: ["./detail-item.component.scss"],
 })
 export class DetailItemComponent implements OnInit, OnDestroy {
-  // bug border-bottom color prev card
   card?: ResponseItemModel;
 
   destroy$ = new Subject<boolean>();
@@ -30,11 +29,9 @@ export class DetailItemComponent implements OnInit, OnDestroy {
         filter((item) => item?.id === itemId),
       )
       .subscribe((c) => {
-        console.log(c);
         this.card = c;
       });
     this.getCard(itemId);
-    // console.log(this.card?.snippet.publishedAt);
   }
 
   getCard(itemId: string) {

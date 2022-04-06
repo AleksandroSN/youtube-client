@@ -1,4 +1,8 @@
 <!-- <div> -->
 <span class="profile-name">{{profileName}}</span>
-<img src="/assets/profile.svg" alt="profile">
+<!-- <app-route-link linkPath="/login" linkText="link"> -->
+<a [routerLink]="['/login']" routerLinkActive="router-link-active">
+  <img src="/assets/profile.svg" alt="profile">
+</a>
+<!-- </app-route-link> -->
 <!-- </div> -->

@@ -6,6 +6,7 @@ import {
   DetailItemComponent,
 } from "./components";
 import { SearchResultPageComponent, DetailPageComponent } from "./pages";
+import { YoutubeRoutingModule } from "./youtube-routing.module";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { SearchResultPageComponent, DetailPageComponent } from "./pages";
     DetailPageComponent,
     DetailItemComponent,
   ],
-  imports: [SharedModule],
-  exports: [SearchResultPageComponent, DetailPageComponent],
+  imports: [SharedModule, YoutubeRoutingModule],
+  // exports: [SearchResultPageComponent, DetailPageComponent],
 })
 export class YoutubeModule {}

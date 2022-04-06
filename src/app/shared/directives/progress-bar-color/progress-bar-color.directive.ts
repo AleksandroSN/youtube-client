@@ -19,7 +19,6 @@ export class ProgressBarColorDirective implements AfterContentInit {
   ) {}
 
   ngAfterContentInit(): void {
-    console.log(this.date);
     this.updateColor();
   }
 

@@ -1,26 +1,17 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import {
-  SearchResultPageComponent,
-  DetailPageComponent,
-} from "@app/youtube/pages";
-import { LoginPageComponent } from "@app/auth/pages";
 import { NotFoundPageComponent } from "@app/core/pages";
 
 const routes: Routes = [
+  { path: "", redirectTo: "/video", pathMatch: "full" },
   {
-    path: "home",
-    component: SearchResultPageComponent,
-  },
-  {
-    path: "home/:id",
-    component: DetailPageComponent,
+    path: "video",
+    loadChildren: () => import("./youtube/youtube.module").then((m) => m.YoutubeModule),
   },
   {
     path: "login",
-    component: LoginPageComponent,
+    loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
   },
-  { path: "", redirectTo: "/home", pathMatch: "full" },
   {
     path: "**",
     component: NotFoundPageComponent,
