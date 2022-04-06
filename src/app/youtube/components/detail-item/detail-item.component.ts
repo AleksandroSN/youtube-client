@@ -3,7 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 import { CardsService } from "@app/core/services";
 import { ResponseItemModel } from "@app/shared";
-import { Subject, takeUntil } from "rxjs";
+import { filter, Subject, takeUntil } from "rxjs";
 
 @Component({
   selector: "app-detail-item",
@@ -23,18 +23,21 @@ export class DetailItemComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    const itemId = this.route.snapshot.paramMap.get("id") as string;
     this.cardsService.detailData$
-      .pipe(takeUntil(this.destroy$))
+      .pipe(
+        takeUntil(this.destroy$),
+        filter((item) => item?.id === itemId),
+      )
       .subscribe((c) => {
         console.log(c);
         this.card = c;
       });
-    this.getCard();
+    this.getCard(itemId);
     // console.log(this.card?.snippet.publishedAt);
   }
 
-  getCard() {
-    const itemId = this.route.snapshot.paramMap.get("id") as string;
+  getCard(itemId: string) {
     this.cardsService.getCardById(itemId);
   }
 
