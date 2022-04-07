@@ -1,0 +1,10 @@
+<ng-container *ngIf="!profileName ; else successAuth">
+  <app-route-link linkPath="/login" linkText="LOGIN">
+  </app-route-link>
+</ng-container>
+<ng-template #successAuth>
+  <div class="flex align-center gap-5">
+    <span class="profile-name">{{profileName}}</span>
+    <img class="profile-img profile-img--pointer" src="/assets/profile.svg" alt="profile" (click)="onClick()">
+  </div>
+</ng-template>
