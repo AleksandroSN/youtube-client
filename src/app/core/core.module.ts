@@ -13,6 +13,7 @@ import {
   ErrorService,
   FiltersService,
   HttpServiceService,
+  InputValidationService,
   LoginService,
 } from "./services";
 import { NotFoundPageComponent } from "./pages";
@@ -33,6 +34,7 @@ import { AuthGuard } from "./guards";
     ErrorService,
     CardsService,
     LoginService,
+    InputValidationService,
     AuthGuard,
   ],
   imports: [SharedModule, FormsModule],

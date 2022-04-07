@@ -20,7 +20,14 @@
         [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
-      <mat-error *ngIf="password?.invalid && (password?.dirty || password?.touched)">Please enter a password</mat-error>
+      <mat-error *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+        Your password isn't strong enough
+        <span *ngIf="password?.errors?.['minLength']">at least 8 characters</span>
+        <span *ngIf="password?.errors?.['upperAndLowerCase']">a mixture of both uppercase and lowercase letters</span>
+        <span *ngIf="password?.errors?.['numbersAndLetters']">a mixture of letters and numbers</span>
+        <span *ngIf="password?.errors?.['specialChar']">inclusion of at least one special character, e.g., ! @ # ?
+          ]</span>
+      </mat-error>
     </mat-form-field>
     <button [disabled]="form.invalid" class="login-submit" mat-raised-button color="primary"
       type="submit">Login</button>
