@@ -13,8 +13,10 @@ import {
   ErrorService,
   FiltersService,
   HttpServiceService,
+  LoginService,
 } from "./services";
 import { NotFoundPageComponent } from "./pages";
+import { AuthGuard } from "./guards";
 
 @NgModule({
   declarations: [
@@ -25,7 +27,14 @@ import { NotFoundPageComponent } from "./pages";
     SearchFilterBtnComponent,
     NotFoundPageComponent,
   ],
-  providers: [HttpServiceService, FiltersService, ErrorService, CardsService],
+  providers: [
+    HttpServiceService,
+    FiltersService,
+    ErrorService,
+    CardsService,
+    LoginService,
+    AuthGuard,
+  ],
   imports: [SharedModule, FormsModule],
   exports: [HeaderComponent, NotFoundPageComponent],
 })
