@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
+import { LoginService } from "@app/core/services";
+import { User } from "@app/shared";
 
 @Component({
   selector: "app-login-form",
@@ -16,12 +18,15 @@ export class LoginFormComponent {
     Validators.minLength(3),
   ]);
 
+  constructor(private loginService: LoginService) {}
+
   // eslint-disable-next-line class-methods-use-this
   onSubmit() {
-    const loginData = {
+    const user: User = {
       login: this.login.value,
-      pass: this.password.value,
+      password: this.password.value,
     };
-    console.log(loginData);
+    this.loginService.login(user);
+    // console.log(loginData);
   }
 }
