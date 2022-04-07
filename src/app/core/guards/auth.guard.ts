@@ -9,7 +9,6 @@ import { LoginService } from "../services";
 export class AuthGuard implements CanActivate, CanLoad {
   constructor(private router: Router, private loginService: LoginService) {}
 
-  // eslint-disable-next-line class-methods-use-this
   canActivate() {
     return this.checkLogin();
   }

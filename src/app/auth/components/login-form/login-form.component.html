@@ -1,18 +1,28 @@
-<form class="login-form" (ngSubmit)="onSubmit()">
-  <p class="login-title">Login</p>
-  <mat-form-field appearance="fill">
-    <mat-label>Enter your login</mat-label>
-    <input matInput [formControl]="login" required>
-    <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Enter your password</mat-label>
-    <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
-    <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-      [attr.aria-pressed]="hide">
-      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </button>
-    <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
-  </mat-form-field>
-  <button class="login-submit" mat-raised-button color="primary" type="submit">Login</button>
-</form>
+<ng-container *ngIf="form">
+  <form class="login-form" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <p class="login-title">Login</p>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your login</mat-label>
+      <input type="email" matInput formControlName="email" placeholder="some@email.com" required>
+      <mat-error *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+        <span *ngIf="email?.errors?.['required']">
+          Email is required.
+        </span>
+        <span *ngIf="email?.invalid">
+          Email is invalid.
+        </span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+      <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="password?.invalid && (password?.dirty || password?.touched)">Please enter a password</mat-error>
+    </mat-form-field>
+    <button [disabled]="form.invalid" class="login-submit" mat-raised-button color="primary"
+      type="submit">Login</button>
+  </form>
+</ng-container>

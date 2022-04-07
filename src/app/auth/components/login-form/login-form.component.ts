@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { FormControl, Validators } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { LoginService } from "@app/core/services";
 import { User } from "@app/shared";
 
@@ -8,25 +8,34 @@ import { User } from "@app/shared";
   templateUrl: "./login-form.component.html",
   styleUrls: ["./login-form.component.scss"],
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnInit {
   hide = true;
 
-  login = new FormControl("", [Validators.required, Validators.minLength(3)]);
+  form?: FormGroup;
 
-  password = new FormControl("", [
-    Validators.required,
-    Validators.minLength(3),
-  ]);
+  constructor(private loginService: LoginService, private fb: FormBuilder) {}
 
-  constructor(private loginService: LoginService) {}
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      email: ["", [Validators.required, Validators.email]],
+      password: ["", [Validators.required, Validators.minLength(3)]],
+    });
+  }
 
-  // eslint-disable-next-line class-methods-use-this
+  get email() {
+    return this.form?.get("email");
+  }
+
+  get password() {
+    return this.form?.get("password");
+  }
+
   onSubmit() {
+    const dataFromForm = this.form?.value;
     const user: User = {
-      login: this.login.value,
-      password: this.password.value,
+      login: dataFromForm.login,
+      password: dataFromForm.password,
     };
     this.loginService.login(user);
-    // console.log(loginData);
   }
 }
