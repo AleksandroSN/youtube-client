@@ -5,7 +5,7 @@ import { RegExForInputValidation } from "@utils";
 @Injectable()
 export class InputValidationService {
   // eslint-disable-next-line class-methods-use-this
-  loginValidator(): ValidatorFn {
+  passwordValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       if (!new RegExp(RegExForInputValidation.minLength).test(control.value)) {
         return { minLength: true };

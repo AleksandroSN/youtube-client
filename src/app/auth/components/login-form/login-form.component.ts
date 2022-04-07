@@ -16,7 +16,7 @@ export class LoginFormComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private fb: FormBuilder,
-    private inputValidationService: InputValidationService
+    private inputValidationService: InputValidationService,
   ) {}
 
   ngOnInit(): void {
@@ -24,7 +24,7 @@ export class LoginFormComponent implements OnInit {
       email: ["", [Validators.required, Validators.email]],
       password: [
         "",
-        [Validators.required, this.inputValidationService.loginValidator()],
+        [Validators.required, this.inputValidationService.passwordValidator()],
       ],
     });
   }
