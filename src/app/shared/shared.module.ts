@@ -8,6 +8,8 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule } from "@angular/material/core";
 import { RouterModule } from "@angular/router";
 import { ButtonComponent, RouteLinkComponent } from "./components";
 import { ProgressBarColorDirective, SortDirective } from "./directives";
@@ -21,6 +23,8 @@ const MaterialsModules = [
   MatButtonModule,
   MatCardModule,
   MatProgressBarModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 ];
 
 @NgModule({
@@ -33,6 +37,7 @@ const MaterialsModules = [
     RouteLinkComponent,
   ],
   imports: [MaterialsModules, CommonModule, RouterModule, ReactiveFormsModule],
+  providers: [MatDatepickerModule],
   exports: [
     MaterialsModules,
     CommonModule,

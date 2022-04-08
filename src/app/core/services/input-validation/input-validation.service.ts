@@ -10,23 +10,13 @@ export class InputValidationService {
       if (!new RegExp(RegExForInputValidation.minLength).test(control.value)) {
         return { minLength: true };
       }
-      if (
-        !new RegExp(RegExForInputValidation.upperAndLowerCase).test(
-          control.value,
-        )
-      ) {
+      if (!new RegExp(RegExForInputValidation.upperAndLowerCase).test(control.value)) {
         return { upperAndLowerCase: true };
       }
-      if (
-        !new RegExp(RegExForInputValidation.numbersAndLetters).test(
-          control.value,
-        )
-      ) {
+      if (!new RegExp(RegExForInputValidation.numbersAndLetters).test(control.value)) {
         return { numbersAndLetters: true };
       }
-      if (
-        !new RegExp(RegExForInputValidation.specialChar).test(control.value)
-      ) {
+      if (!new RegExp(RegExForInputValidation.specialChar).test(control.value)) {
         return { specialChar: true };
       }
       return null;

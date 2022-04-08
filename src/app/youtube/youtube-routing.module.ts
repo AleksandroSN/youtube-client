@@ -1,8 +1,12 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { SearchResultPageComponent, DetailPageComponent } from "./pages";
+import { SearchResultPageComponent, DetailPageComponent, AdminPageComponent } from "./pages";
 
 const routes: Routes = [
+  {
+    path: "admin",
+    component: AdminPageComponent,
+  },
   {
     path: "",
     component: SearchResultPageComponent,

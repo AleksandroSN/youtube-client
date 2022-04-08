@@ -5,6 +5,9 @@
 <ng-template #successAuth>
   <div class="flex align-center gap-5">
     <span class="profile-name">{{profileName}}</span>
-    <img class="profile-img profile-img--pointer" src="/assets/profile.svg" alt="profile" (click)="onClick()">
+    <app-route-link linkPath="/video/admin">
+      <img class="profile-img profile-img--pointer" src="/assets/profile.svg" alt="profile">
+    </app-route-link>
+    <button (click)="onClick()" mat-raised-button color="primary">LOGOUT</button>
   </div>
 </ng-template>

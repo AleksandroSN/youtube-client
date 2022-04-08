@@ -1,0 +1,70 @@
+<ng-container *ngIf="form">
+  <form class="create-card-form" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <p class="create-card-title">Create new card</p>
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input type="text" matInput formControlName="title" required>
+      <mat-error *ngIf="title?.invalid && (title?.dirty || title?.touched)">
+        <span *ngIf="title?.errors?.['required']">
+          Email is required.
+        </span>
+        <span *ngIf="title?.invalid">
+          Email is invalid.
+        </span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description">
+      <mat-error *ngIf="description?.invalid && (description?.dirty || description?.touched)">
+        Your password isn't strong enough
+        <span *ngIf="description?.errors?.['minLength']">at least 8 characters</span>
+        <span *ngIf="description?.errors?.['upperAndLowerCase']">a mixture of both uppercase and lowercase
+          letters</span>
+        <span *ngIf="description?.errors?.['numbersAndLetters']">a mixture of letters and numbers</span>
+        <span *ngIf="description?.errors?.['specialChar']">inclusion of at least one special character, e.g., ! @ # ?
+          ]</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Img</mat-label>
+      <input matInput formControlName="imgLink" required>
+      <mat-error *ngIf="imgLink?.invalid && (imgLink?.dirty || imgLink?.touched)">
+        Your password isn't strong enough
+        <span *ngIf="imgLink?.errors?.['minLength']">at least 8 characters</span>
+        <span *ngIf="imgLink?.errors?.['upperAndLowerCase']">a mixture of both uppercase and lowercase letters</span>
+        <span *ngIf="imgLink?.errors?.['numbersAndLetters']">a mixture of letters and numbers</span>
+        <span *ngIf="imgLink?.errors?.['specialChar']">inclusion of at least one special character, e.g., ! @ # ?
+          ]</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Link video</mat-label>
+      <input matInput formControlName="videoLink" required>
+      <mat-error *ngIf="videoLink?.invalid && (videoLink?.dirty || videoLink?.touched)">
+        Your password isn't strong enough
+        <span *ngIf="videoLink?.errors?.['minLength']">at least 8 characters</span>
+        <span *ngIf="videoLink?.errors?.['upperAndLowerCase']">a mixture of both uppercase and lowercase letters</span>
+        <span *ngIf="videoLink?.errors?.['numbersAndLetters']">a mixture of letters and numbers</span>
+        <span *ngIf="videoLink?.errors?.['specialChar']">inclusion of at least one special character, e.g., ! @ # ?
+          ]</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="date?.invalid && (date?.dirty || date?.touched)">
+        Your password isn't strong enough
+        <span *ngIf="date?.errors?.['minLength']">at least 8 characters</span>
+        <span *ngIf="date?.errors?.['upperAndLowerCase']">a mixture of both uppercase and lowercase letters</span>
+        <span *ngIf="date?.errors?.['numbersAndLetters']">a mixture of letters and numbers</span>
+        <span *ngIf="date?.errors?.['specialChar']">inclusion of at least one special character, e.g., ! @ # ?
+          ]</span>
+      </mat-error>
+    </mat-form-field>
+    <button [disabled]="form.invalid" class="create-card-submit" mat-raised-button color="primary" type="submit">Create
+      card</button>
+  </form>
+</ng-container>
