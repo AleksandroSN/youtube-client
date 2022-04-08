@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { CardsService, FiltersService } from "@app/core/services";
-import { ResponseModel, SortParamsWithDirection } from "@app/shared";
+import { ResponseItemModel, SortParamsWithDirection } from "@app/shared";
 import { Subject, takeUntil } from "rxjs";
 
 @Component({
@@ -9,7 +9,7 @@ import { Subject, takeUntil } from "rxjs";
   styleUrls: ["./search-result.component.scss"],
 })
 export class SearchResultComponent implements OnInit, OnDestroy {
-  cards?: ResponseModel;
+  cards: ResponseItemModel[] = [];
 
   searchStr: string = "";
 
@@ -17,10 +17,7 @@ export class SearchResultComponent implements OnInit, OnDestroy {
 
   destroy$ = new Subject<boolean>();
 
-  constructor(
-    private filtersService: FiltersService,
-    private cardService: CardsService,
-  ) {}
+  constructor(private filtersService: FiltersService, private cardService: CardsService) {}
 
   ngOnInit(): void {
     this.subscribeToSearchStr();
@@ -29,24 +26,20 @@ export class SearchResultComponent implements OnInit, OnDestroy {
   }
 
   subscribeToSort() {
-    this.filtersService.sortBy$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((sortData) => {
-        this.sortBy = sortData;
-      });
+    this.filtersService.sortBy$.pipe(takeUntil(this.destroy$)).subscribe((sortData) => {
+      this.sortBy = sortData;
+    });
   }
 
   subscribeToSearchStr() {
-    this.filtersService.searchStr$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((str) => {
-        this.searchStr = str;
-      });
+    this.filtersService.searchStr$.pipe(takeUntil(this.destroy$)).subscribe((str) => {
+      this.searchStr = str;
+    });
   }
 
   subscribeToCards() {
     this.cardService.data$.pipe(takeUntil(this.destroy$)).subscribe((data) => {
-      this.cards = data;
+      this.cards.push(...data);
     });
   }
 

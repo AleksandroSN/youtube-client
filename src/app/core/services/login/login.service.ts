@@ -23,6 +23,14 @@ export class LoginService {
     this.route.navigateByUrl("/video");
   }
 
+  loadProfile() {
+    const localStorageData = localStorage.getItem("auth_data");
+    if (localStorageData) {
+      const savedUser = JSON.parse(localStorageData) as UserWithToken;
+      this.user$.next(savedUser);
+    }
+  }
+
   logout() {
     this.user$.next(null);
     localStorage.removeItem("token");

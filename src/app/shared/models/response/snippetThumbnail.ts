@@ -8,10 +8,10 @@ interface ThumbnailModel {
 }
 
 export interface SnippetThumbnailsModel {
-  default: ThumbnailModel;
-  medium: ThumbnailModel;
-  high: ThumbnailModel;
-  standard: ThumbnailModel;
-  maxres: ThumbnailModel;
-  channelTitle: string;
+  default?: ThumbnailModel;
+  medium?: ThumbnailModel;
+  high?: ThumbnailModel;
+  standard?: ThumbnailModel;
+  maxres?: ThumbnailModel;
+  channelTitle?: string;
 }

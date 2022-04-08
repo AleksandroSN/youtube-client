@@ -1,15 +1,19 @@
 import { Injectable } from "@angular/core";
 import { ResponseItemModel, ResponseModel } from "@app/shared";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, map, Observable } from "rxjs";
 import { HttpServiceService } from "../http-service";
 
 @Injectable()
 export class CardsService {
-  data$ = new BehaviorSubject<ResponseModel | undefined>(undefined);
+  data$ = new BehaviorSubject<ResponseItemModel[]>([]);
 
   detailData$ = new BehaviorSubject<ResponseItemModel | undefined>(undefined);
 
   constructor(private httpService: HttpServiceService) {}
+
+  get currentCards(): ResponseItemModel[] {
+    return this.data$.value;
+  }
 
   getResponse(): Observable<ResponseModel> {
     return this.httpService.get<ResponseModel>();
@@ -17,16 +21,14 @@ export class CardsService {
 
   getCards(): void {
     this.getResponse()
-      .pipe()
+      .pipe(map((data) => data.items))
       .subscribe((d) => {
         this.data$.next(d);
       });
   }
 
   getCardById(id: string): void {
-    this.getResponse().subscribe((d) => {
-      const card = d.items.find((c) => c.id === id);
-      this.detailData$.next(card);
-    });
+    const card = this.currentCards.find((c) => c.id === id);
+    this.detailData$.next(card);
   }
 }

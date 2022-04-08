@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 import { CardsService, InputValidationService } from "@app/core/services";
+import { ResponseItemModel } from "@app/shared";
 import { RegExForInputValidation } from "@utils";
 
 @Component({
@@ -11,20 +13,24 @@ import { RegExForInputValidation } from "@utils";
 export class CreateCardComponent implements OnInit {
   form?: FormGroup;
 
+  cards: ResponseItemModel[] = [];
+
   constructor(
     private cardService: CardsService,
     private fb: FormBuilder,
-    private inputValidationService: InputValidationService
+    private router: Router,
+    private inputValidationService: InputValidationService,
   ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
       title: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       description: ["", [Validators.maxLength(255)]],
-      imgLink: ["", [Validators.required, Validators.pattern(/www/)]],
-      videoLink: ["", [Validators.required, Validators.pattern(/www/)]],
-      date: ["", [Validators.required]],
+      imgLink: ["", [Validators.required, Validators.pattern(RegExForInputValidation.urlValid)]],
+      videoLink: ["", [Validators.required, Validators.pattern(RegExForInputValidation.urlValid)]],
+      date: ["", [Validators.required, this.inputValidationService.dateVlidator()]],
     });
+    this.cards = this.cardService.currentCards;
   }
 
   get title() {
@@ -49,12 +55,36 @@ export class CreateCardComponent implements OnInit {
 
   onSubmit() {
     const dataFromForm = this.form?.value;
-    console.log(dataFromForm);
-    // const userName = getUsernameFromEmail(dataFromForm.login);
-    // const user: User = {
-    //   login: userName,
-    //   password: dataFromForm.password,
-    // };
-    // this.loginService.login(user);
+    const newCard: ResponseItemModel = {
+      etag: "asdasd",
+      id: "asdad",
+      kind: "asdasd",
+      snippet: {
+        description: dataFromForm.description,
+        publishedAt: dataFromForm.date,
+        title: dataFromForm.title,
+        thumbnails: {
+          medium: {
+            height: 180,
+            width: 320,
+            url: dataFromForm.imgLink,
+          },
+          standard: {
+            height: 480,
+            width: 640,
+            url: dataFromForm.imgLink,
+          },
+        },
+      },
+      statistics: {
+        commentCount: "51",
+        dislikeCount: "22",
+        favoriteCount: "222",
+        likeCount: "333",
+        viewCount: "323321",
+      },
+    };
+    this.cardService.data$.next([...this.cards, newCard]);
+    this.router.navigateByUrl("/video");
   }
 }

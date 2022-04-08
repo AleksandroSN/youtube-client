@@ -22,4 +22,17 @@ export class InputValidationService {
       return null;
     };
   }
+
+  // eslint-disable-next-line class-methods-use-this
+  dateVlidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (control.value) {
+        const currentDate = new Date().getTime();
+        const dateFromForm = control.value.getTime();
+        const diffBetweenDate = currentDate - dateFromForm;
+        return diffBetweenDate < 0 ? null : { notValidDate: true };
+      }
+      return null;
+    };
+  }
 }
