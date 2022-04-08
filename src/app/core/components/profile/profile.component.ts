@@ -14,12 +14,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   profileName?: string;
 
-  @HostBinding("class") class = "flex-25";
+  @HostBinding("class") class = "flex";
 
   constructor(private loginService: LoginService) {}
 
   ngOnInit(): void {
     this.getProfileName();
+    this.loginService.loadProfile();
   }
 
   getProfileName() {

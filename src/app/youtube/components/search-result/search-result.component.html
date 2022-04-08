@@ -1,6 +1,4 @@
 <ng-container *ngIf="!!cards">
-  <!-- <div > -->
   <app-search-result-item *ngFor="let card of cards| appFilter: searchStr | appSorter: sortBy" [card]="card">
   </app-search-result-item>
-  <!-- </div> -->
 </ng-container>
