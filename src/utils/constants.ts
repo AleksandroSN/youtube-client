@@ -9,7 +9,28 @@ export const RegExForInputValidation = {
 };
 
 export const FAKE_TOKEN = "SAFDSFADFDJKHJBJf";
+export const LOCAL_STORAGE_KEY = "auth_data";
 
 export const LOGIN_PAGE = "login";
 export const ADMIN_PAGE = "admin";
 export const VIDEO_PAGE = "video";
+
+export const SORT_BY_DATE = "publishedAt";
+export const SORT_BY_COUNT = "viewCount";
+
+export const BORDER_BOTTOM_BLUE = "blue-progress";
+export const BORDER_BOTTOM_GREEN = "green-progress";
+export const BORDER_BOTTOM_YELLOW = "yellow-progress";
+export const BORDER_BOTTOM_RED = "red-progress";
+
+export const WEEK = 7;
+export const MONTH = 30;
+export const HALF_YEAR = 180;
+
+export const LOGIN_INPUT = "login";
+export const PASSWORD_INPUT = "password";
+export const TITLE_INPUT = "title";
+export const DESCRIPTION_INPUT = "description";
+export const IMG_LINK_INPUT = "imgLink";
+export const VIDEO_LINK_INPUT = "videoLink";
+export const DATE_INPUT = "date";

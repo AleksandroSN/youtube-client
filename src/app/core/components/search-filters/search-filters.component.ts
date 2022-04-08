@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { FiltersService } from "@app/core/services";
+import { SORT_BY_COUNT, SORT_BY_DATE } from "@utils";
 
 @Component({
   selector: "app-search-filters",
@@ -9,9 +10,9 @@ import { FiltersService } from "@app/core/services";
 export class SearchFilterComponent {
   searchData = "";
 
-  sortByDateParam = "publishedAt";
+  sortByDateParam = SORT_BY_DATE;
 
-  sortByViewCountParam = "viewCount";
+  sortByViewCountParam = SORT_BY_COUNT;
 
   constructor(private filtersService: FiltersService) {}
 

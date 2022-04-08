@@ -20,7 +20,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getProfileName();
-    this.loginService.loadProfile();
   }
 
   getProfileName() {

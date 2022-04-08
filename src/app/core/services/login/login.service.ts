@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { User, UserWithToken } from "@app/shared";
-import { FAKE_TOKEN, LOCAL_STORAGE_KEY, LOGIN_PAGE, VIDEO_PAGE } from "@utils";
+import {
+  FAKE_TOKEN, LOCAL_STORAGE_KEY, LOGIN_PAGE, VIDEO_PAGE,
+} from "@utils";
 import { BehaviorSubject } from "rxjs";
 
 @Injectable()

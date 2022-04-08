@@ -2,8 +2,17 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CardsService, InputValidationService } from "@app/core/services";
-import { ResponseItemModel } from "@app/shared";
-import { RegExForInputValidation } from "@utils";
+import { CreateCardForm, ResponseItemModel } from "@app/shared";
+import {
+  DATE_INPUT,
+  DESCRIPTION_INPUT,
+  generateNewCard,
+  IMG_LINK_INPUT,
+  RegExForInputValidation,
+  TITLE_INPUT,
+  VIDEO_LINK_INPUT,
+  VIDEO_PAGE,
+} from "@utils";
 
 @Component({
   selector: "app-create-card",
@@ -34,57 +43,29 @@ export class CreateCardComponent implements OnInit {
   }
 
   get title() {
-    return this.form?.get("title");
+    return this.form?.get(TITLE_INPUT);
   }
 
   get description() {
-    return this.form?.get("description");
+    return this.form?.get(DESCRIPTION_INPUT);
   }
 
   get imgLink() {
-    return this.form?.get("imgLink");
+    return this.form?.get(IMG_LINK_INPUT);
   }
 
   get videoLink() {
-    return this.form?.get("videoLink");
+    return this.form?.get(VIDEO_LINK_INPUT);
   }
 
   get date() {
-    return this.form?.get("date");
+    return this.form?.get(DATE_INPUT);
   }
 
   onSubmit() {
-    const dataFromForm = this.form?.value;
-    const newCard: ResponseItemModel = {
-      etag: "asdasd",
-      id: "asdad",
-      kind: "asdasd",
-      snippet: {
-        description: dataFromForm.description,
-        publishedAt: dataFromForm.date,
-        title: dataFromForm.title,
-        thumbnails: {
-          medium: {
-            height: 180,
-            width: 320,
-            url: dataFromForm.imgLink,
-          },
-          standard: {
-            height: 480,
-            width: 640,
-            url: dataFromForm.imgLink,
-          },
-        },
-      },
-      statistics: {
-        commentCount: "51",
-        dislikeCount: "22",
-        favoriteCount: "222",
-        likeCount: "333",
-        viewCount: "323321",
-      },
-    };
+    const dataFromForm = this.form?.value as CreateCardForm;
+    const newCard: ResponseItemModel = generateNewCard(dataFromForm);
     this.cardService.data$.next([...this.cards, newCard]);
-    this.router.navigateByUrl("/video");
+    this.router.navigateByUrl(`/${VIDEO_PAGE}`);
   }
 }

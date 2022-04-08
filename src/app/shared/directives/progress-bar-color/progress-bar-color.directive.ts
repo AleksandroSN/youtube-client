@@ -1,11 +1,16 @@
 import {
-  Directive,
-  Input,
-  ElementRef,
-  Renderer2,
-  AfterContentInit,
+  Directive, Input, ElementRef, Renderer2, AfterContentInit,
 } from "@angular/core";
-import { getNumberOfDays } from "@utils";
+import {
+  BORDER_BOTTOM_BLUE,
+  BORDER_BOTTOM_GREEN,
+  BORDER_BOTTOM_RED,
+  BORDER_BOTTOM_YELLOW,
+  getNumberOfDays,
+  HALF_YEAR,
+  MONTH,
+  WEEK,
+} from "@utils";
 
 @Directive({
   selector: "[appProgressBarColor]",
@@ -13,10 +18,7 @@ import { getNumberOfDays } from "@utils";
 export class ProgressBarColorDirective implements AfterContentInit {
   @Input() date: string | null = "";
 
-  constructor(
-    private el: ElementRef<HTMLElement>,
-    private rerender: Renderer2,
-  ) {}
+  constructor(private el: ElementRef<HTMLElement>, private rerender: Renderer2) {}
 
   ngAfterContentInit(): void {
     this.updateColor();
@@ -25,20 +27,20 @@ export class ProgressBarColorDirective implements AfterContentInit {
   updateColor(): void {
     const currentDate = new Date();
     const difDay = getNumberOfDays(currentDate, this.date ?? "");
-    if (difDay < 7) {
-      this.rerender.addClass(this.el.nativeElement, "blue-progress");
+    if (difDay < WEEK) {
+      this.rerender.addClass(this.el.nativeElement, BORDER_BOTTOM_BLUE);
       return;
     }
-    if (difDay > 7 && difDay < 30) {
-      this.rerender.addClass(this.el.nativeElement, "green-progress");
+    if (difDay > WEEK && difDay < MONTH) {
+      this.rerender.addClass(this.el.nativeElement, BORDER_BOTTOM_GREEN);
       return;
     }
-    if (difDay > 30 && difDay < 180) {
-      this.rerender.addClass(this.el.nativeElement, "yellow-progress");
+    if (difDay > MONTH && difDay < HALF_YEAR) {
+      this.rerender.addClass(this.el.nativeElement, BORDER_BOTTOM_YELLOW);
       return;
     }
-    if (difDay > 180) {
-      this.rerender.addClass(this.el.nativeElement, "red-progress");
+    if (difDay > HALF_YEAR) {
+      this.rerender.addClass(this.el.nativeElement, BORDER_BOTTOM_RED);
     }
   }
 }

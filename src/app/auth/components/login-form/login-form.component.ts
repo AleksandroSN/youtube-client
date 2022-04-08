@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { InputValidationService, LoginService } from "@app/core/services";
 import { User } from "@app/shared";
-import { getUsernameFromEmail } from "@utils";
+import { getUsernameFromEmail, LOGIN_INPUT, PASSWORD_INPUT } from "@utils";
 
 @Component({
   selector: "app-login-form",
@@ -23,19 +23,16 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       login: ["", [Validators.required, Validators.email]],
-      password: [
-        "",
-        [Validators.required, this.inputValidationService.passwordValidator()],
-      ],
+      password: ["", [Validators.required, this.inputValidationService.passwordValidator()]],
     });
   }
 
   get login() {
-    return this.form?.get("login");
+    return this.form?.get(LOGIN_INPUT);
   }
 
   get password() {
-    return this.form?.get("password");
+    return this.form?.get(PASSWORD_INPUT);
   }
 
   onSubmit() {
