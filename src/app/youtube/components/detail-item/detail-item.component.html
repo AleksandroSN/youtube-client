@@ -1,0 +1,37 @@
+<ng-container *ngIf="card">
+  <button class="self-start" mat-raised-button color="primary" type="button" (click)="goBack()">
+    <mat-icon>
+      keyboard_arrow_left
+    </mat-icon>
+  </button>
+  <img src="{{card.snippet.thumbnails.standard?.url}}">
+  <mat-card class="container">
+    <mat-card-title-group>
+      <mat-card-title>{{card?.snippet?.title}}</mat-card-title>
+      <mat-card-subtitle>{{card?.snippet?.publishedAt | date:"fullDate"}}</mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-content>
+      <p>Description:</p>
+      <p>{{card.snippet.description}}</p>
+    </mat-card-content>
+    <mat-card-actions class="flex justify-evenly">
+      <div class="flex align-center gap-2">
+        <mat-icon>visibility</mat-icon><span>{{card.statistics.viewCount}}</span>
+      </div>
+      <div class="flex align-center gap-2">
+        <mat-icon>thumb_up</mat-icon><span>{{card.statistics.likeCount}}</span>
+      </div>
+      <div class="flex align-center gap-2">
+        <mat-icon>thumb_down</mat-icon><span>{{card.statistics.dislikeCount}}</span>
+      </div>
+      <div class="flex align-center gap-2">
+        <mat-icon>question_answer</mat-icon><span>{{card.statistics.commentCount}}</span>
+      </div>
+    </mat-card-actions>
+    <mat-card-footer>
+      <mat-progress-bar *ngIf="card.snippet.publishedAt" appProgressBarColor [date]="card.snippet.publishedAt | date"
+        mode="determinate" value="100">
+      </mat-progress-bar>
+    </mat-card-footer>
+  </mat-card>
+</ng-container>
