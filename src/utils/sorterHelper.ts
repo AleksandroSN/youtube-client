@@ -3,7 +3,7 @@ import { ResponseVideoItemModel, SortParamsWithDirection } from "@app/shared";
 export const sorterHelper = (
   a: ResponseVideoItemModel,
   b: ResponseVideoItemModel,
-  sortDir: SortParamsWithDirection
+  sortDir: SortParamsWithDirection,
 ) => {
   let x = 0;
   let y = 0;

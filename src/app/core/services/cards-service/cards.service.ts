@@ -1,8 +1,12 @@
 import { Injectable } from "@angular/core";
 import { ResponseSearchModel, ResponseVideoItemModel, ResponseVideoModel } from "@app/shared";
+import { DEBOUNCE_TIME, MIN_LENGTH_CHARACTERS } from "@utils";
 // import { ResponseItemModel, ResponseModel } from "@app/shared";
-import { BehaviorSubject, map, switchMap } from "rxjs";
+import {
+  BehaviorSubject, debounceTime, filter, map, switchMap,
+} from "rxjs";
 import { HttpServiceService } from "../http-service";
+import { SearchService } from "../search-service";
 
 @Injectable()
 export class CardsService {
@@ -10,8 +14,8 @@ export class CardsService {
 
   detailData$ = new BehaviorSubject<ResponseVideoItemModel | undefined>(undefined);
 
-  constructor(private httpService: HttpServiceService) {
-    this.getCards("JS");
+  constructor(private httpService: HttpServiceService, private searchService: SearchService) {
+    this.subscibeToSearchTerm();
   }
 
   get currentCards(): ResponseVideoItemModel[] {
@@ -25,24 +29,28 @@ export class CardsService {
         map((res) => res.items),
         switchMap((items) => {
           const ids = items.map((it) => it.id.videoId).join(",");
-          return this.httpService
-            .getVideosByIds<ResponseVideoModel>(ids)
-            .pipe(map((video) => video.items));
-        })
+          return this.getResponseByIds(ids);
+        }),
       )
       .subscribe((d) => {
         this.data$.next(d);
       });
   }
 
-  // getCards(): void {
-  //   this.getResponse()
-  //     // .pipe(map((data) => data.items))
-  //     .subscribe((d) => {
-  //       console.log(d);
-  //       // this.data$.next(d);
-  //     });
-  // }
+  getResponseByIds(ids: string) {
+    return this.httpService
+      .getVideosByIds<ResponseVideoModel>(ids)
+      .pipe(map((video) => video.items));
+  }
+
+  subscibeToSearchTerm() {
+    this.searchService.searchTerm$
+      .pipe(
+        filter((str) => str.length > MIN_LENGTH_CHARACTERS),
+        debounceTime(DEBOUNCE_TIME),
+      )
+      .subscribe((searchStr) => this.getCards(searchStr));
+  }
 
   getCardById(id: string): void {
     this.httpService

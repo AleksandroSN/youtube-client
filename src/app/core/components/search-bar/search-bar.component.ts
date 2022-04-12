@@ -16,13 +16,4 @@ export class SearchBarComponent {
   onInput() {
     this.searchService.updateSearchTerm(this.searchStr);
   }
-
-  // ngOnInit(): void {
-  //   this.searchService.searchTerm$
-  //     .pipe(
-  //       filter((x) => x.length > 3),
-  //       debounceTime(300)
-  //     )
-  //     .subscribe((y) => this.cardsService.getCards());
-  // }
 }

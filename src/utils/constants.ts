@@ -34,3 +34,6 @@ export const DESCRIPTION_INPUT = "description";
 export const IMG_LINK_INPUT = "imgLink";
 export const VIDEO_LINK_INPUT = "videoLink";
 export const DATE_INPUT = "date";
+
+export const DEBOUNCE_TIME = 700;
+export const MIN_LENGTH_CHARACTERS = 3;

@@ -18,7 +18,7 @@ export class DetailItemComponent implements OnInit, OnDestroy {
   constructor(
     private cardsService: CardsService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
   ) {}
 
   ngOnInit(): void {
@@ -26,7 +26,7 @@ export class DetailItemComponent implements OnInit, OnDestroy {
     this.cardsService.detailData$
       .pipe(
         takeUntil(this.destroy$),
-        filter((item) => item?.id === itemId)
+        filter((item) => item?.id === itemId),
       )
       .subscribe((c) => {
         this.card = c;
