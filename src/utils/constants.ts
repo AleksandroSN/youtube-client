@@ -37,3 +37,6 @@ export const DATE_INPUT = "date";
 
 export const DEBOUNCE_TIME = 700;
 export const MIN_LENGTH_CHARACTERS = 3;
+export const API_URL = "https://www.googleapis.com/youtube/v3/";
+export const CHUNK_SEARCH_URL = "search?type=video&maxResults=15&q=";
+export const CHUNK_VIDEO_URL = "videos?part=snippet,statistics&id=";

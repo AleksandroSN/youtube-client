@@ -11,9 +11,11 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 import { RouterModule } from "@angular/router";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ButtonComponent, RouteLinkComponent } from "./components";
 import { ProgressBarColorDirective, SortDirective } from "./directives";
 import { FilterPipe, SorterPipe } from "./pipes";
+import { YoutubeInterceptor } from "./interceptors";
 
 const MaterialsModules = [
   MatToolbarModule,
@@ -37,7 +39,10 @@ const MaterialsModules = [
     RouteLinkComponent,
   ],
   imports: [MaterialsModules, CommonModule, RouterModule, ReactiveFormsModule],
-  providers: [MatDatepickerModule],
+  providers: [
+    MatDatepickerModule,
+    { provide: HTTP_INTERCEPTORS, useClass: YoutubeInterceptor, multi: true },
+  ],
   exports: [
     MaterialsModules,
     CommonModule,
