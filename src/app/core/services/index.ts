@@ -4,3 +4,4 @@ export * from "./http-service";
 export * from "./cards-service";
 export * from "./input-validation";
 export * from "./login";
+export * from "./search-service";

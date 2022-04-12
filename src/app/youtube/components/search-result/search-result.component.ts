@@ -39,7 +39,7 @@ export class SearchResultComponent implements OnInit, OnDestroy {
 
   subscribeToCards() {
     this.cardService.data$.pipe(takeUntil(this.destroy$)).subscribe((data) => {
-      this.cards.push(...data);
+      this.cards = data;
     });
   }
 
