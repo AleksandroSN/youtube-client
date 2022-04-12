@@ -1,6 +1,6 @@
-import { CreateCardForm, ResponseItemModel } from "@app/shared";
+import { CreateCardForm, ResponseVideoItemModel } from "@app/shared";
 
-export const generateNewCard = (dataFromForm: CreateCardForm): ResponseItemModel => ({
+export const generateNewCard = (dataFromForm: CreateCardForm): ResponseVideoItemModel => ({
   etag: "asdasd",
   id: "asdad",
   kind: "asdasd",

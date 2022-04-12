@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CardsService, InputValidationService } from "@app/core/services";
-import { CreateCardForm, ResponseItemModel } from "@app/shared";
+import { CreateCardForm, ResponseVideoItemModel } from "@app/shared";
 import {
   DATE_INPUT,
   DESCRIPTION_INPUT,
@@ -22,7 +22,7 @@ import {
 export class CreateCardComponent implements OnInit {
   form?: FormGroup;
 
-  cards: ResponseItemModel[] = [];
+  cards: ResponseVideoItemModel[] = [];
 
   constructor(
     private cardService: CardsService,
@@ -64,7 +64,7 @@ export class CreateCardComponent implements OnInit {
 
   onSubmit() {
     const dataFromForm = this.form?.value as CreateCardForm;
-    const newCard: ResponseItemModel = generateNewCard(dataFromForm);
+    const newCard: ResponseVideoItemModel = generateNewCard(dataFromForm);
     this.cardService.data$.next([...this.cards, newCard]);
     this.router.navigateByUrl(`/${VIDEO_PAGE}`);
   }

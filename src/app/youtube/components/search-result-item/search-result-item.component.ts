@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { ResponseItemModel } from "@app/shared";
+import { ResponseVideoItemModel } from "@app/shared";
 
 @Component({
   selector: "app-search-result-item",
@@ -7,5 +7,5 @@ import { ResponseItemModel } from "@app/shared";
   styleUrls: ["./search-result-item.component.scss"],
 })
 export class SearchResultItemComponent {
-  @Input() card!: ResponseItemModel;
+  @Input() card!: ResponseVideoItemModel;
 }

@@ -1,34 +1,56 @@
 import { Injectable } from "@angular/core";
-import { ResponseItemModel, ResponseModel } from "@app/shared";
-import { BehaviorSubject, map, Observable } from "rxjs";
+import { ResponseSearchModel, ResponseVideoItemModel, ResponseVideoModel } from "@app/shared";
+// import { ResponseItemModel, ResponseModel } from "@app/shared";
+import { BehaviorSubject, map, switchMap } from "rxjs";
 import { HttpServiceService } from "../http-service";
 
 @Injectable()
 export class CardsService {
-  data$ = new BehaviorSubject<ResponseItemModel[]>([]);
+  data$ = new BehaviorSubject<ResponseVideoItemModel[]>([]);
 
-  detailData$ = new BehaviorSubject<ResponseItemModel | undefined>(undefined);
+  detailData$ = new BehaviorSubject<ResponseVideoItemModel | undefined>(undefined);
 
-  constructor(private httpService: HttpServiceService) {}
+  constructor(private httpService: HttpServiceService) {
+    this.getCards("JS");
+  }
 
-  get currentCards(): ResponseItemModel[] {
+  get currentCards(): ResponseVideoItemModel[] {
     return this.data$.value;
   }
 
-  getResponse(): Observable<ResponseModel> {
-    return this.httpService.get<ResponseModel>();
-  }
-
-  getCards(): void {
-    this.getResponse()
-      .pipe(map((data) => data.items))
+  getCards(searchTerm: string) {
+    this.httpService
+      .getByWord<ResponseSearchModel>(searchTerm)
+      .pipe(
+        map((res) => res.items),
+        switchMap((items) => {
+          const ids = items.map((it) => it.id.videoId).join(",");
+          return this.httpService
+            .getVideosByIds<ResponseVideoModel>(ids)
+            .pipe(map((video) => video.items));
+        })
+      )
       .subscribe((d) => {
         this.data$.next(d);
       });
   }
 
+  // getCards(): void {
+  //   this.getResponse()
+  //     // .pipe(map((data) => data.items))
+  //     .subscribe((d) => {
+  //       console.log(d);
+  //       // this.data$.next(d);
+  //     });
+  // }
+
   getCardById(id: string): void {
-    const card = this.currentCards.find((c) => c.id === id);
-    this.detailData$.next(card);
+    this.httpService
+      .getVideosByIds<ResponseVideoModel>(id)
+      .pipe(map((res) => res.items))
+      .subscribe((card) => {
+        const firstCard = card[0];
+        this.detailData$.next(firstCard);
+      });
   }
 }

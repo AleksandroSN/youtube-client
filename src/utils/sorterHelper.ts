@@ -1,9 +1,9 @@
-import { ResponseItemModel, SortParamsWithDirection } from "@app/shared";
+import { ResponseVideoItemModel, SortParamsWithDirection } from "@app/shared";
 
 export const sorterHelper = (
-  a: ResponseItemModel,
-  b: ResponseItemModel,
-  sortDir: SortParamsWithDirection,
+  a: ResponseVideoItemModel,
+  b: ResponseVideoItemModel,
+  sortDir: SortParamsWithDirection
 ) => {
   let x = 0;
   let y = 0;

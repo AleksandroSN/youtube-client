@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { CardsService, FiltersService } from "@app/core/services";
-import { ResponseItemModel, SortParamsWithDirection } from "@app/shared";
+import { ResponseVideoItemModel, SortParamsWithDirection } from "@app/shared";
 import { Subject, takeUntil } from "rxjs";
 
 @Component({
@@ -9,7 +9,7 @@ import { Subject, takeUntil } from "rxjs";
   styleUrls: ["./search-result.component.scss"],
 })
 export class SearchResultComponent implements OnInit, OnDestroy {
-  cards: ResponseItemModel[] = [];
+  cards: ResponseVideoItemModel[] = [];
 
   searchStr: string = "";
 

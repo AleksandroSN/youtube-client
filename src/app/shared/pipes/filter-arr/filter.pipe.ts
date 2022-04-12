@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { ResponseItemModel } from "@app/shared";
+import { ResponseVideoItemModel } from "@app/shared";
 
 @Pipe({
   name: "appFilter",
 })
 export class FilterPipe implements PipeTransform {
   // eslint-disable-next-line class-methods-use-this
-  transform(items: ResponseItemModel[], searchStr: string) {
+  transform(items: ResponseVideoItemModel[], searchStr: string) {
     if (!items) {
       return [];
     }

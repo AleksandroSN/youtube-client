@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 import { CardsService } from "@app/core/services";
-import { ResponseItemModel } from "@app/shared";
+import { ResponseVideoItemModel } from "@app/shared";
 import { filter, Subject, takeUntil } from "rxjs";
 
 @Component({
@@ -11,14 +11,14 @@ import { filter, Subject, takeUntil } from "rxjs";
   styleUrls: ["./detail-item.component.scss"],
 })
 export class DetailItemComponent implements OnInit, OnDestroy {
-  card?: ResponseItemModel;
+  card?: ResponseVideoItemModel;
 
   destroy$ = new Subject<boolean>();
 
   constructor(
     private cardsService: CardsService,
     private route: ActivatedRoute,
-    private location: Location,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -26,7 +26,7 @@ export class DetailItemComponent implements OnInit, OnDestroy {
     this.cardsService.detailData$
       .pipe(
         takeUntil(this.destroy$),
-        filter((item) => item?.id === itemId),
+        filter((item) => item?.id === itemId)
       )
       .subscribe((c) => {
         this.card = c;

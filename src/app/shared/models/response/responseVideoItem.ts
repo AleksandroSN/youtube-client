@@ -1,7 +1,7 @@
 import { ResponseItemSnippetModel } from "./responseItemSnippet";
 import { ResponseItemStatisticsModel } from "./responseItemStatistics";
 
-export interface ResponseItemModel {
+export interface ResponseVideoItemModel {
   kind: string;
   etag: string;
   id: string;

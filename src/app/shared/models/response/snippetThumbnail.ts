@@ -13,5 +13,4 @@ export interface SnippetThumbnailsModel {
   high?: ThumbnailModel;
   standard?: ThumbnailModel;
   maxres?: ThumbnailModel;
-  channelTitle?: string;
 }
