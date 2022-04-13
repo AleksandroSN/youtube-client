@@ -1,13 +1,11 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Directive, OnDestroy, OnInit } from "@angular/core";
 import { CardsService } from "@app/core/services";
 import { Subject, takeUntil } from "rxjs";
 
-@Component({
-  selector: "app-detail-page",
-  templateUrl: "./detail-page.component.html",
-  styleUrls: ["./detail-page.component.scss"],
+@Directive({
+  selector: "[appLoader]",
 })
-export class DetailPageComponent implements OnInit, OnDestroy {
+export class LoaderDirective implements OnInit, OnDestroy {
   loader = true;
 
   destroy$ = new Subject<boolean>();

@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from "@angular/common/http";
+import {
+  HttpRequest, HttpHandler, HttpEvent, HttpInterceptor,
+} from "@angular/common/http";
 import { Observable } from "rxjs";
 import { API_URL, CHUNK_SEARCH_URL, CHUNK_VIDEO_URL } from "@utils";
 import { environment } from "@environments/environment";

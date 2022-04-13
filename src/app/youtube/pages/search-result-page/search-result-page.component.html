@@ -1,3 +1,6 @@
-<ng-container>
-  <app-search-result></app-search-result>
+<ng-container *ngIf="loader ; else searchResult">
+  <mat-spinner></mat-spinner>
 </ng-container>
+<ng-template #searchResult>
+  <app-search-result></app-search-result>
+</ng-template>

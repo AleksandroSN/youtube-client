@@ -1,12 +1,9 @@
 import { Injectable } from "@angular/core";
 import { ResponseSearchModel, ResponseVideoItemModel, ResponseVideoModel } from "@app/shared";
-import { DEBOUNCE_TIME, MIN_LENGTH_CHARACTERS } from "@utils";
-// import { ResponseItemModel, ResponseModel } from "@app/shared";
 import {
-  BehaviorSubject, debounceTime, filter, map, switchMap,
+  BehaviorSubject, finalize, map, switchMap,
 } from "rxjs";
 import { HttpServiceService } from "../http-service";
-import { SearchService } from "../search-service";
 
 @Injectable()
 export class CardsService {
@@ -14,15 +11,16 @@ export class CardsService {
 
   detailData$ = new BehaviorSubject<ResponseVideoItemModel | undefined>(undefined);
 
-  constructor(private httpService: HttpServiceService, private searchService: SearchService) {
-    this.subscibeToSearchTerm();
-  }
+  isLoad$ = new BehaviorSubject<boolean>(false);
+
+  constructor(private httpService: HttpServiceService) {}
 
   get currentCards(): ResponseVideoItemModel[] {
     return this.data$.value;
   }
 
   getCards(searchTerm: string) {
+    this.isLoad$.next(true);
     this.httpService
       .getByWord<ResponseSearchModel>(searchTerm)
       .pipe(
@@ -31,6 +29,7 @@ export class CardsService {
           const ids = items.map((it) => it.id.videoId).join(",");
           return this.getResponseByIds(ids);
         }),
+        finalize(() => this.isLoad$.next(false)),
       )
       .subscribe((d) => {
         this.data$.next(d);
@@ -41,15 +40,6 @@ export class CardsService {
     return this.httpService
       .getVideosByIds<ResponseVideoModel>(ids)
       .pipe(map((video) => video.items));
-  }
-
-  subscibeToSearchTerm() {
-    this.searchService.searchTerm$
-      .pipe(
-        filter((str) => str.length > MIN_LENGTH_CHARACTERS),
-        debounceTime(DEBOUNCE_TIME),
-      )
-      .subscribe((searchStr) => this.getCards(searchStr));
   }
 
   getCardById(id: string): void {

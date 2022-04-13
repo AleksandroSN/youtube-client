@@ -1,15 +1,15 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { YoutubeInterceptor } from './youtube.interceptor';
+import { YoutubeInterceptor } from "./youtube.interceptor";
 
-describe('YoutubeInterceptor', () => {
+describe("YoutubeInterceptor", () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
-      YoutubeInterceptor
-      ]
+      YoutubeInterceptor,
+    ],
   }));
 
-  it('should be created', () => {
+  it("should be created", () => {
     const interceptor: YoutubeInterceptor = TestBed.inject(YoutubeInterceptor);
     expect(interceptor).toBeTruthy();
   });

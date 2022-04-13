@@ -10,10 +10,11 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { RouterModule } from "@angular/router";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ButtonComponent, RouteLinkComponent } from "./components";
-import { ProgressBarColorDirective, SortDirective } from "./directives";
+import { ProgressBarColorDirective, SortDirective, LoaderDirective } from "./directives";
 import { FilterPipe, SorterPipe } from "./pipes";
 import { YoutubeInterceptor } from "./interceptors";
 
@@ -27,6 +28,7 @@ const MaterialsModules = [
   MatProgressBarModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  MatProgressSpinnerModule,
 ];
 
 @NgModule({
@@ -37,6 +39,7 @@ const MaterialsModules = [
     ProgressBarColorDirective,
     SortDirective,
     RouteLinkComponent,
+    LoaderDirective,
   ],
   imports: [MaterialsModules, CommonModule, RouterModule, ReactiveFormsModule],
   providers: [
