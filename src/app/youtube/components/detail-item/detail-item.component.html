@@ -4,7 +4,9 @@
       keyboard_arrow_left
     </mat-icon>
   </button>
-  <img src="{{card.snippet.thumbnails.standard?.url}}">
+  <iframe class="flex-50" [src]="safeURL" title="YouTube video player" frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen></iframe>
   <mat-card class="container">
     <mat-card-title-group>
       <mat-card-title>{{card?.snippet?.title}}</mat-card-title>
