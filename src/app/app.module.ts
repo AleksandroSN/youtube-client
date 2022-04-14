@@ -8,7 +8,7 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { environment } from "@environments/environment";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { metaReducers, reducers } from "./redux";
+import { reducers } from "./redux";
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,9 +18,7 @@ import { metaReducers, reducers } from "./redux";
     BrowserAnimationsModule,
     HttpClientModule,
     CoreModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers,
-    }),
+    StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],

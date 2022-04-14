@@ -1,14 +1,13 @@
-import {
-  ActionReducer,
-  ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
-  MetaReducer,
-} from "@ngrx/store";
-import { environment } from "@environments/environment";
+import { ActionReducerMap } from "@ngrx/store";
+import { customCardsReducers, CustomCardsState } from "./custom-cards.reducer";
+import { youtubeCardsReducers, YoutubeCardsState } from "./youtube-cards.reducer";
 
-export interface State {}
+export interface State {
+  customCardsStore: CustomCardsState;
+  youtubeCardsStore: YoutubeCardsState;
+}
 
-export const reducers: ActionReducerMap<State> = {};
-
-export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
+export const reducers: ActionReducerMap<State> = {
+  customCardsStore: customCardsReducers,
+  youtubeCardsStore: youtubeCardsReducers,
+};

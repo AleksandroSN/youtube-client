@@ -31,7 +31,7 @@ export class CreateCardComponent implements OnInit {
     private store: Store,
     private router: Router,
     private cardService: CardsService,
-    private inputValidationService: InputValidationService
+    private inputValidationService: InputValidationService,
   ) {}
 
   ngOnInit(): void {
@@ -66,9 +66,9 @@ export class CreateCardComponent implements OnInit {
   }
 
   onSubmit() {
-    this.store.dispatch(addCustomCard());
     const dataFromForm = this.form?.value as CreateCardForm;
     const newCard: ResponseVideoItemModel = generateNewCard(dataFromForm);
+    this.store.dispatch(addCustomCard({ customCard: newCard }));
     this.cardService.data$.next([...this.cards, newCard]);
     this.router.navigateByUrl(`/${VIDEO_PAGE}`);
   }
