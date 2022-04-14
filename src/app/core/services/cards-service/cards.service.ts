@@ -1,22 +1,24 @@
 import { Injectable } from "@angular/core";
+import { addYoutubeCard } from "@app/redux";
+import { selectYoutubeCards } from "@app/redux/reducers/youtube-cards.reducer";
 import { ResponseSearchModel, ResponseVideoItemModel, ResponseVideoModel } from "@app/shared";
+import { Store } from "@ngrx/store";
 import {
-  BehaviorSubject, finalize, map, switchMap,
+  BehaviorSubject, finalize, map, Observable, switchMap,
 } from "rxjs";
 import { HttpServiceService } from "../http-service";
 
 @Injectable()
 export class CardsService {
-  data$ = new BehaviorSubject<ResponseVideoItemModel[]>([]);
+  // data$ = new BehaviorSubject<ResponseVideoItemModel[]>([]);
+  data$ = new Observable<ResponseVideoItemModel[]>();
 
   detailData$ = new BehaviorSubject<ResponseVideoItemModel | undefined>(undefined);
 
   isLoad$ = new BehaviorSubject<boolean>(false);
 
-  constructor(private httpService: HttpServiceService) {}
-
-  get currentCards(): ResponseVideoItemModel[] {
-    return this.data$.value;
+  constructor(private httpService: HttpServiceService, private store: Store) {
+    this.data$ = this.store.select(selectYoutubeCards);
   }
 
   getCards(searchTerm: string) {
@@ -32,7 +34,7 @@ export class CardsService {
         finalize(() => this.isLoad$.next(false)),
       )
       .subscribe((d) => {
-        this.data$.next(d);
+        this.store.dispatch(addYoutubeCard({ youtubeCards: d }));
       });
   }
 

@@ -7,9 +7,10 @@ import { sorterHelper } from "@utils";
 })
 export class SorterPipe implements PipeTransform {
   // eslint-disable-next-line class-methods-use-this
-  transform(items: ResponseVideoItemModel[], sortDir: SortParamsWithDirection | null) {
+  transform(items: ResponseVideoItemModel[] | null, sortDir: SortParamsWithDirection | null) {
+    const sortedItems = items ? [...items] : [];
     if (sortDir) {
-      items.sort((a, b) => {
+      sortedItems.sort((a, b) => {
         const { x, y } = sorterHelper(a, b, sortDir);
         if (x < y) {
           return sortDir.direction === "ASC" ? -1 : 1;
@@ -20,6 +21,6 @@ export class SorterPipe implements PipeTransform {
         return 0;
       });
     }
-    return items;
+    return sortedItems;
   }
 }

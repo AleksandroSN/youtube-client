@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { CardsService, InputValidationService } from "@app/core/services";
+import { InputValidationService } from "@app/core/services";
 import { addCustomCard } from "@app/redux";
 import { CreateCardForm, ResponseVideoItemModel } from "@app/shared";
 import { Store } from "@ngrx/store";
@@ -30,7 +30,6 @@ export class CreateCardComponent implements OnInit {
     private fb: FormBuilder,
     private store: Store,
     private router: Router,
-    private cardService: CardsService,
     private inputValidationService: InputValidationService,
   ) {}
 
@@ -42,7 +41,6 @@ export class CreateCardComponent implements OnInit {
       videoLink: ["", [Validators.required, Validators.pattern(RegExForInputValidation.urlValid)]],
       date: ["", [Validators.required, this.inputValidationService.dateVlidator()]],
     });
-    this.cards = this.cardService.currentCards;
   }
 
   get title() {
@@ -69,7 +67,6 @@ export class CreateCardComponent implements OnInit {
     const dataFromForm = this.form?.value as CreateCardForm;
     const newCard: ResponseVideoItemModel = generateNewCard(dataFromForm);
     this.store.dispatch(addCustomCard({ customCard: newCard }));
-    this.cardService.data$.next([...this.cards, newCard]);
     this.router.navigateByUrl(`/${VIDEO_PAGE}`);
   }
 }

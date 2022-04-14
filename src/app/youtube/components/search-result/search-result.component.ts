@@ -1,7 +1,10 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { CardsService, FiltersService } from "@app/core/services";
+import { FiltersService } from "@app/core/services";
+import { selectCustomCards } from "@app/redux/reducers/custom-cards.reducer";
+import { selectYoutubeCards } from "@app/redux/reducers/youtube-cards.reducer";
 import { ResponseVideoItemModel, SortParamsWithDirection } from "@app/shared";
-import { Subject, takeUntil } from "rxjs";
+import { Store } from "@ngrx/store";
+import { Observable, Subject, takeUntil } from "rxjs";
 
 @Component({
   selector: "app-search-result",
@@ -9,7 +12,9 @@ import { Subject, takeUntil } from "rxjs";
   styleUrls: ["./search-result.component.scss"],
 })
 export class SearchResultComponent implements OnInit, OnDestroy {
-  cards: ResponseVideoItemModel[] = [];
+  cards$?: Observable<ResponseVideoItemModel[]>;
+
+  customCards$?: Observable<ResponseVideoItemModel[]>;
 
   searchStr: string = "";
 
@@ -17,12 +22,14 @@ export class SearchResultComponent implements OnInit, OnDestroy {
 
   destroy$ = new Subject<boolean>();
 
-  constructor(private filtersService: FiltersService, private cardService: CardsService) {}
+  constructor(private filtersService: FiltersService, private store: Store) {
+    this.customCards$ = this.store.select(selectCustomCards);
+    this.cards$ = this.store.select(selectYoutubeCards);
+  }
 
   ngOnInit(): void {
     this.subscribeToSearchStr();
     this.subscribeToSort();
-    this.subscribeToCards();
   }
 
   subscribeToSort() {
@@ -34,12 +41,6 @@ export class SearchResultComponent implements OnInit, OnDestroy {
   subscribeToSearchStr() {
     this.filtersService.searchStr$.pipe(takeUntil(this.destroy$)).subscribe((str) => {
       this.searchStr = str;
-    });
-  }
-
-  subscribeToCards() {
-    this.cardService.data$.pipe(takeUntil(this.destroy$)).subscribe((data) => {
-      this.cards = data;
     });
   }
 

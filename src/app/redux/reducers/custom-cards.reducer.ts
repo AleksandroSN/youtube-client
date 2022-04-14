@@ -1,5 +1,7 @@
 import { ResponseVideoItemModel } from "@app/shared";
-import { createReducer, on } from "@ngrx/store";
+import {
+  createFeatureSelector, createReducer, createSelector, on,
+} from "@ngrx/store";
 import { addCustomCard } from "../actions";
 
 export interface CustomCardsState {
@@ -19,4 +21,11 @@ export const customCardsReducers = createReducer(
       customCards: [...state.customCards, customCard],
     }),
   ),
+);
+
+export const selectCustomCardsStore = createFeatureSelector<CustomCardsState>("customCardsStore");
+
+export const selectCustomCards = createSelector(
+  selectCustomCardsStore,
+  (state) => state.customCards,
 );

@@ -6,8 +6,8 @@ import { ResponseVideoItemModel } from "@app/shared";
 })
 export class FilterPipe implements PipeTransform {
   // eslint-disable-next-line class-methods-use-this
-  transform(items: ResponseVideoItemModel[], searchStr: string) {
-    if (!items) {
+  transform(items: ResponseVideoItemModel[] | null, searchStr: string) {
+    if (!items || null) {
       return [];
     }
 
