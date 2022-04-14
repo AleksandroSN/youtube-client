@@ -2,7 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CardsService, InputValidationService } from "@app/core/services";
+import { addCustomCard } from "@app/redux";
 import { CreateCardForm, ResponseVideoItemModel } from "@app/shared";
+import { Store } from "@ngrx/store";
 import {
   DATE_INPUT,
   DESCRIPTION_INPUT,
@@ -25,10 +27,11 @@ export class CreateCardComponent implements OnInit {
   cards: ResponseVideoItemModel[] = [];
 
   constructor(
-    private cardService: CardsService,
     private fb: FormBuilder,
+    private store: Store,
     private router: Router,
-    private inputValidationService: InputValidationService,
+    private cardService: CardsService,
+    private inputValidationService: InputValidationService
   ) {}
 
   ngOnInit(): void {
@@ -63,6 +66,7 @@ export class CreateCardComponent implements OnInit {
   }
 
   onSubmit() {
+    this.store.dispatch(addCustomCard());
     const dataFromForm = this.form?.value as CreateCardForm;
     const newCard: ResponseVideoItemModel = generateNewCard(dataFromForm);
     this.cardService.data$.next([...this.cards, newCard]);
