@@ -1,7 +1,8 @@
 import { ResponseVideoItemModel } from "@app/shared";
 import { createAction, props } from "@ngrx/store";
+import { CustomCardsActionsName } from "@utils";
 
 export const addCustomCard = createAction(
-  "[Custom Card] custom card is add",
+  CustomCardsActionsName.ADD,
   props<{ customCard: ResponseVideoItemModel }>(),
 );

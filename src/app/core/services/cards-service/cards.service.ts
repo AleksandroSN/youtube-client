@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
-import { addYoutubeCard } from "@app/redux";
-import { selectYoutubeCards } from "@app/redux/reducers/youtube-cards.reducer";
+import { addYoutubeCard, selectYoutubeCards } from "@app/redux";
 import { ResponseSearchModel, ResponseVideoItemModel, ResponseVideoModel } from "@app/shared";
 import { Store } from "@ngrx/store";
 import {
@@ -33,8 +32,8 @@ export class CardsService {
         }),
         finalize(() => this.isLoad$.next(false)),
       )
-      .subscribe((d) => {
-        this.store.dispatch(addYoutubeCard({ youtubeCards: d }));
+      .subscribe((cards) => {
+        this.store.dispatch(addYoutubeCard({ youtubeCards: cards }));
       });
   }
 

@@ -40,3 +40,13 @@ export const MIN_LENGTH_CHARACTERS = 3;
 export const API_URL = "https://www.googleapis.com/youtube/v3/";
 export const CHUNK_SEARCH_URL = "search?type=video&maxResults=15&q=";
 export const CHUNK_VIDEO_URL = "videos?part=snippet,statistics&id=";
+
+// REDUX
+export const CUSTOM_CARD_FEATURE_KEY = "customCardsFeature";
+export const YOUTUBE_CARD_FEATURE_KEY = "youtubeCardsFeature";
+export enum CustomCardsActionsName {
+  ADD = "[Custom Card] custom card is add",
+}
+export enum YoutubeCardsActionsName {
+  ADD = "[Youtube Card] card from youtube is add",
+}

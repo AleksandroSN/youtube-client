@@ -1,6 +1,13 @@
 import { ResponseVideoItemModel } from "@app/shared";
 
-export interface YoutubeAppStore {
+export interface YoutubeAppState {
+  customCardsFeature: CustomCardsState;
+  youtubeCardsFeature: YoutubeCardsState;
+}
+export interface CustomCardsState {
   customCards: ResponseVideoItemModel[];
-  youtubeApiCards: ResponseVideoItemModel[];
+}
+
+export interface YoutubeCardsState {
+  youtubeCards: ResponseVideoItemModel[];
 }

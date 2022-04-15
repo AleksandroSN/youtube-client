@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FiltersService } from "@app/core/services";
-import { selectCustomCards } from "@app/redux/reducers/custom-cards.reducer";
-import { selectYoutubeCards } from "@app/redux/reducers/youtube-cards.reducer";
+import { selectCustomCards, selectYoutubeCards } from "@app/redux";
 import { ResponseVideoItemModel, SortParamsWithDirection } from "@app/shared";
 import { Store } from "@ngrx/store";
 import { Observable, Subject, takeUntil } from "rxjs";

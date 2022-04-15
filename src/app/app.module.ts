@@ -8,7 +8,7 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { environment } from "@environments/environment";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { reducers } from "./redux";
+import { appReducers } from "./redux";
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +18,7 @@ import { reducers } from "./redux";
     BrowserAnimationsModule,
     HttpClientModule,
     CoreModule,
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],

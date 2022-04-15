@@ -1,7 +1,8 @@
 import { ResponseVideoItemModel } from "@app/shared";
 import { createAction, props } from "@ngrx/store";
+import { YoutubeCardsActionsName } from "@utils";
 
 export const addYoutubeCard = createAction(
-  "[Youtube Card] card from youtube is add",
+  YoutubeCardsActionsName.ADD,
   props<{ youtubeCards: ResponseVideoItemModel[] }>(),
 );

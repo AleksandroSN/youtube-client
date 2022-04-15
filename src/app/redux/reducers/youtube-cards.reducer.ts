@@ -1,12 +1,6 @@
-import { ResponseVideoItemModel } from "@app/shared";
-import {
-  createFeatureSelector, createReducer, createSelector, on,
-} from "@ngrx/store";
+import { createReducer, on } from "@ngrx/store";
 import { addYoutubeCard } from "../actions";
-
-export interface YoutubeCardsState {
-  youtubeCards: ResponseVideoItemModel[];
-}
+import { YoutubeCardsState } from "../state.models";
 
 const INITIAL_STATE: YoutubeCardsState = {
   youtubeCards: [],
@@ -21,11 +15,4 @@ export const youtubeCardsReducers = createReducer(
       youtubeCards,
     }),
   ),
-);
-
-export const selectYoutubeCardsStore = createFeatureSelector<YoutubeCardsState>("youtubeCardsStore");
-
-export const selectYoutubeCards = createSelector(
-  selectYoutubeCardsStore,
-  (state) => state.youtubeCards,
 );
