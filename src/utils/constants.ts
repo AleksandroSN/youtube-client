@@ -50,3 +50,7 @@ export enum CustomCardsActionsName {
 export enum YoutubeCardsActionsName {
   ADD = "[Youtube Card] card from youtube is add",
 }
+export enum CardActionsName {
+  NEW_CARD = "[CARD] recieved new card",
+  NEW_INPUT = "[INPUT] recived new input",
+}

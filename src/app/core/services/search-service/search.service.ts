@@ -1,13 +1,14 @@
 import { Injectable } from "@angular/core";
+import { recieveSearchInput } from "@app/redux";
+import { Store } from "@ngrx/store";
 import { DEBOUNCE_TIME, MIN_LENGTH_CHARACTERS } from "@utils";
 import { BehaviorSubject, debounceTime, filter } from "rxjs";
-import { CardsService } from "../cards-service";
 
 @Injectable()
 export class SearchService {
   searchTerm$ = new BehaviorSubject<string>("");
 
-  constructor(private cardsService: CardsService) {
+  constructor(private store: Store) {
     this.subscibeToSearchTerm();
   }
 
@@ -21,6 +22,6 @@ export class SearchService {
         filter((str) => str.length > MIN_LENGTH_CHARACTERS),
         debounceTime(DEBOUNCE_TIME),
       )
-      .subscribe((searchStr) => this.cardsService.getCards(searchStr));
+      .subscribe((searchStr) => this.store.dispatch(recieveSearchInput({ searchTerm: searchStr })));
   }
 }
