@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  flex: 1;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  justify-content: space-between;
+  background-color: hsl(0, 0%, 90%);
+  overflow: hidden;
+}
+
+.card-btn {
+  width: 120px;
+  margin: 0 auto;
+}

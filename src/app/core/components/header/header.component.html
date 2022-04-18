@@ -1,0 +1,18 @@
+<mat-toolbar class="pt-3 pb-2">
+  <mat-toolbar-row class="gap-10rem justify-center">
+    <div class="header__container">
+      <div class="flex align-center flex-1">
+        <app-route-link linkPath="/">
+          <img src="/assets/logo.png" alt="logo">
+        </app-route-link>
+        <div class="header-search-bar__wrapper">
+          <app-search-bar *ngIf="isAuth"></app-search-bar>
+        </div>
+      </div>
+      <app-profile></app-profile>
+    </div>
+  </mat-toolbar-row>
+  <mat-toolbar-row *ngIf="showFilters">
+    <app-search-filters></app-search-filters>
+  </mat-toolbar-row>
+</mat-toolbar>

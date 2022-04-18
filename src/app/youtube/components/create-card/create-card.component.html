@@ -1,0 +1,66 @@
+<ng-container *ngIf="form">
+  <form class="create-card-form" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <p class="create-card-title">Create new card</p>
+
+    <!-- Title input-->
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input type="text" matInput formControlName="title" required>
+      <mat-error *ngIf="title?.invalid && (title?.dirty || title?.touched)">
+        <span *ngIf="title?.errors?.['required']">
+          Please enter a title.
+        </span>
+        <span *ngIf="title?.errors?.['minlength']">
+          The title is too short.
+        </span>
+        <span *ngIf="title?.errors?.['maxlength']">
+          The title is too long.
+        </span>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Description textarea-->
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" placeholder="Leave a description..."></textarea>
+      <mat-error *ngIf="description?.invalid && (description?.dirty || description?.touched)">
+        <span *ngIf="description?.errors?.['maxlength']">The description is too long</span>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Image Link input-->
+    <mat-form-field appearance="fill">
+      <mat-label>Img</mat-label>
+      <input matInput formControlName="imgLink" required>
+      <mat-error *ngIf="imgLink?.invalid && (imgLink?.dirty || imgLink?.touched)">
+        <span *ngIf="imgLink?.errors?.['required']">Please enter a link to the image</span>
+        <span *ngIf="imgLink?.errors?.['pattern']">The image link is invalid</span>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Video Link input-->
+    <mat-form-field appearance="fill">
+      <mat-label>Link video</mat-label>
+      <input matInput formControlName="videoLink" required>
+      <mat-error *ngIf="videoLink?.invalid && (videoLink?.dirty || videoLink?.touched)">
+        <span *ngIf="videoLink?.errors?.['required']">Please enter a link to the video</span>
+        <span *ngIf="videoLink?.errors?.['pattern']">The video link is invalid</span>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Datepicker -->
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="date?.invalid && (date?.dirty || date?.touched)">
+        <span *ngIf="date?.errors?.['required']">Please enter a creation date</span>
+        <span *ngIf="date?.errors?.['notValidDate']">The date is invalid</span>
+      </mat-error>
+    </mat-form-field>
+
+    <button [disabled]="form.invalid" class="create-card-submit" mat-raised-button color="primary" type="submit">Create
+      card</button>
+  </form>
+</ng-container>
